@@ -8,12 +8,16 @@ const leaderboardsTable = document.getElementById("leaderboards_table_body")
 
 const leaderboardsDatabasePath = "./../../database/dumb_leaderboards.json";
 
+// Game start
 startGameButton.addEventListener("click", () => {
     leaderboardsTable.style.display = "none";
     mainMenu.style.display = "none";
 });
 
+// Leaderboard opening
 leaderboardsButton.addEventListener("click", async () => {
+
+    // Data loading
     let database = await(await fetch(leaderboardsDatabasePath,
         {
             headers : { 
@@ -24,14 +28,14 @@ leaderboardsButton.addEventListener("click", async () => {
     )).json();
 
     let scoresList = database.leaderboards
-    
-    console.log(scoresList)
 
+    // Score array sorting
     scoresList.sort((a, b) => {
         return (a.score > b.score) ? -1 : (a.score < b.score) ? 1 : 0
     })
 
-
+    // Creating DOM-elements for each player 
+    // Appending them to .html file
     scoresList.forEach(element => {
         let newRow = document.createElement("tr")
         let nicknameCell = document.createElement("td")
@@ -45,6 +49,7 @@ leaderboardsButton.addEventListener("click", async () => {
         leaderboardsTable.append(newRow);
     });
 
+    // Enable leaderboards table for interaction
     leaderboardsTableWrapper.style.display = "flex";
 });
 
@@ -55,5 +60,6 @@ leaderboardsCloseButton.addEventListener("click", () => {
         leaderboardsTable.removeChild(leaderboardsTable.firstChild);
     }
 
+    // Unable leaderboards table for interaction
     leaderboardsTableWrapper.style.display = "none";
 });
