@@ -1,0 +1,22 @@
+* {
+    /* Positioning */
+    padding: 0;
+    margin: 0;
+
+    /* Font  */
+    font-family: 'Common Pixel', sans-serif;
+    color: #ecf0f1;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    /* Sizing */
+    width: 100%;
+    height: 100%;
+
+    /* Positioning */
+    position: relative;
+}
