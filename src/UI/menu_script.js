@@ -5,14 +5,52 @@ const leaderboardsCloseButton = document.getElementById("leaderboards_close_btn"
 
 // Section imports
 const mainMenu = document.getElementById("main_menu_wrapper")
-const leaderboardsTableWrapper = document.getElementById("leaderboards_wrapper")
 const leaderboardsTable = document.getElementById("leaderboards_table_body")
+const leaderboardsTableWrapper = document.getElementById("leaderboards_wrapper")
+
+// Input imports
+const nicknameInput = document.getElementById("nickname_input")
 
 // Database relative path
 const leaderboardsDatabasePath = "./../../database/dumb_leaderboards.json";
 
 // Game start click
-startGameButton.addEventListener("click", () => {
+startGameButton.addEventListener("click", async () => {
+
+    // Reading Nickname input contents and than define
+    // what will we do next
+    const nickname = nicknameInput.value
+    if (!nickname) {
+        window.alert("You have entered no nickname. Please name yourself.");
+        return;
+    }
+
+    // Checking for original nickname
+    let database = await(await fetch(leaderboardsDatabasePath,
+        {
+            headers : { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }
+    )).json();
+
+    let scoresList = database.leaderboards
+    console.log(scoresList)
+
+    let filtered = scoresList.filter(element => {
+        if (element['name'] == nickname) {
+            return element;
+        }
+    });
+
+    
+    if (filtered.length) {
+        window.alert("There are another record related to this name. Try another nickname.");
+        return;
+    }
+
+    // If nickname is exists and its unique
     leaderboardsTable.style.display = "none";
     mainMenu.style.display = "none";
 
@@ -55,7 +93,7 @@ leaderboardsButton.addEventListener("click", async () => {
             let scoreCell = document.createElement("td")
 
             nicknameCell.innerHTML = element["name"]
-                scoreCell.innerHTML = element["score"]
+            scoreCell.innerHTML = element["score"]
 
             newRow.append(nicknameCell)
             newRow.append(scoreCell)
