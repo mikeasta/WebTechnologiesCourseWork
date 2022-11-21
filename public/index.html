@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="./styles/index.css">
     <link rel="stylesheet" href="./styles/main_menu.css">
     <link rel="stylesheet" href="./styles/leaderboards.css">
+    <link rel="stylesheet" href="./styles/gameplay_screen.css">
     <title>Game</title>
 </head>
 <body>
-    <div id="main_menu_wrapper">
+    <div id="main_menu_wrapper" >
         <h1>
             "The Best Game Ever"
         </h1>
@@ -43,8 +44,42 @@
         <button type="submit" id="leaderboards_close_btn">CLOSE</button>
     </div>
 
-    <canvas></canvas>
+    <div id="gameplay_screen" style="display:none">
+        <canvas id="playground"></canvas>
+        <div id="gameplay_stats">
+            <button id="to_home">Return to Home Screen</button>
+            <div id="gameplay_player_info">
+                <p id="gameplay_player_name">Name: <b>Mike</b></p>
+                <p id="gameplay_player_score">Score: <b>108000</b></p>
+            </div>
+            <div id="gameplay_player_stats">
+                <h3>Stats</h3>
+                <p id="gameplay_player_health">Health: <b>100 HP</b></p>
+                <p id="gameplay_player_damage">Damage: <b>10 ATK</b></p>
+                <p id="gameplay_player_speed">Speed: <b>x1.0</b></p>
+            </div>
+            <div id="gameplay_player_buffs">
+                
+                <img src="https://img.freepik.com/premium-vector/poison-herb-pixel-art-style_475147-1355.jpg" alt="" class="gameplay_player_buff">
+                <img src="https://img.freepik.com/premium-vector/poison-herb-pixel-art-style_475147-1355.jpg" alt="" class="gameplay_player_buff">
+                <img src="https://img.freepik.com/premium-vector/poison-herb-pixel-art-style_475147-1355.jpg" alt="" class="gameplay_player_buff">
+                <img src="https://img.freepik.com/premium-vector/poison-herb-pixel-art-style_475147-1355.jpg" alt="" class="gameplay_player_buff">
+                <img src="https://img.freepik.com/premium-vector/poison-herb-pixel-art-style_475147-1355.jpg" alt="" class="gameplay_player_buff">
+                <img src="https://img.freepik.com/premium-vector/poison-herb-pixel-art-style_475147-1355.jpg" alt="" class="gameplay_player_buff">
+                <img src="https://img.freepik.com/premium-vector/poison-herb-pixel-art-style_475147-1355.jpg" alt="" class="gameplay_player_buff">
+                <img src="https://img.freepik.com/premium-vector/poison-herb-pixel-art-style_475147-1355.jpg" alt="" class="gameplay_player_buff">  
+            </div>
+            <div id="gameplay_controls">
+                <p><b>W</b> - move up</p>
+                <p><b>A</b> - move left</p>
+                <p><b>S</b> - move down</p>
+                <p><b>D</b> - move right</p>
+                <p><b>Mouse 1</b> - attack</p>
+            </div>
+        </div>
+    </div>
+    
 
-    <script type="module" src="./scripts/menu_script.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>

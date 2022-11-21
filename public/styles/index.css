@@ -19,4 +19,7 @@ body {
 
     /* Positioning */
     position: relative;
+
+    
+    background: repeating-conic-gradient(#3498db5f 0% 25%, transparent 0% 50%) 50% / 150px 150px
 }

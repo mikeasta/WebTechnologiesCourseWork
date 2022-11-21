@@ -1,0 +1,76 @@
+#gameplay_screen {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0px 50px;
+}
+
+#playground {
+    width: 1400px;
+    height: 800px;
+    border: 5px dashed #2980b9;
+    background-color: #fff;
+}
+
+
+#gameplay_stats {
+    width: 350px;
+    height: 810px;
+    padding: 20px 10px;
+    background-color: #3498db;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 26px;
+}
+
+#to_home {
+    border:none;
+    background: none;
+    outline: none;
+
+    background-color: #2980b9;
+    width: 80%;
+    height: 50px;
+    font-size: 18px;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+#to_home:hover {
+    transition: .2s;
+    box-shadow: 8px 8px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+#gameplay_player_stats {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gameplay_player_buffs {
+    background-color: #2980b9;
+    height: 234px;
+    width: 234px;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    padding: 3px;
+}
+
+.gameplay_player_buff {
+    width: 70px;
+    height: 70px;
+    margin: 3px;
+}
+
+
