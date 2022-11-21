@@ -65,6 +65,7 @@
     flex-flow: row wrap;
     align-items: center;
     padding: 3px;
+    image-rendering: crisp-edges;
 }
 
 .gameplay_player_buff {
