@@ -1,11 +1,11 @@
 // Button imports
-const startGameButton = document.getElementById("start_btn")
-const leaderboardsButton = document.getElementById("leaderboards_btn")
+const startGameButton         = document.getElementById("start_btn")
+const leaderboardsButton      = document.getElementById("leaderboards_btn")
 const leaderboardsCloseButton = document.getElementById("leaderboards_close_btn")
 
 // Section imports
-const mainMenu = document.getElementById("main_menu_wrapper")
-const leaderboardsTable = document.getElementById("leaderboards_table_body")
+const mainMenu                 = document.getElementById("main_menu_wrapper")
+const leaderboardsTable        = document.getElementById("leaderboards_table_body")
 const leaderboardsTableWrapper = document.getElementById("leaderboards_wrapper")
 
 // Input imports
@@ -14,45 +14,25 @@ const nicknameInput = document.getElementById("nickname_input")
 // Database relative path
 const leaderboardsDatabasePath = "./../../database/dumb_leaderboards.json";
 
+
 // Game start click
 startGameButton.addEventListener("click", async () => {
 
     // Reading Nickname input contents and than define
     // what will we do next
     const nickname = nicknameInput.value
+
     if (!nickname) {
         window.alert("You have entered no nickname. Please name yourself.");
         return;
     }
 
-    // Checking for original nickname
-    let database = await(await fetch(leaderboardsDatabasePath,
-        {
-            headers : { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            }
-        }
-    )).json();
+    // Save nickname into localStorage
+    localStorage["player"] = JSON.stringify({nickname})
 
-    let scoresList = database.leaderboards
-    console.log(scoresList)
-
-    let filtered = scoresList.filter(element => {
-        if (element['name'] == nickname) {
-            return element;
-        }
-    });
-
-    
-    if (filtered.length) {
-        window.alert("There are another record related to this name. Try another nickname.");
-        return;
-    }
-
-    // If nickname is exists and its unique
+    // If nickname is exists
     leaderboardsTable.style.display = "none";
-    mainMenu.style.display = "none";
+    mainMenu.style.display          = "none";
 
     // Memory Cleaning:
     // If nothing refers to DOM-object, JS' GC will delete required elements permanently
@@ -60,6 +40,7 @@ startGameButton.addEventListener("click", async () => {
         leaderboardsTable.removeChild(leaderboardsTable.firstChild);
     }
 });
+
 
 // Leaderboard opening
 leaderboardsButton.addEventListener("click", async () => {
@@ -88,12 +69,12 @@ leaderboardsButton.addEventListener("click", async () => {
         // Creating DOM-elements for each player 
         // Appending them to .html file
         scoresList.forEach(element => {
-            let newRow = document.createElement("tr")
+            let newRow       = document.createElement("tr")
             let nicknameCell = document.createElement("td")
-            let scoreCell = document.createElement("td")
+            let scoreCell    = document.createElement("td")
 
             nicknameCell.innerHTML = element["name"]
-            scoreCell.innerHTML = element["score"]
+            scoreCell.innerHTML    = element["score"]
 
             newRow.append(nicknameCell)
             newRow.append(scoreCell)
@@ -109,4 +90,10 @@ leaderboardsButton.addEventListener("click", async () => {
 leaderboardsCloseButton.addEventListener("click", () => {
     // Unable leaderboards table for interaction
     leaderboardsTableWrapper.style.display = "none";
+
+    // Memory Cleaning:
+    // If nothing refers to DOM-object, JS' GC will delete required elements permanently
+    while (leaderboardsTable.firstChild) {
+        leaderboardsTable.removeChild(leaderboardsTable.firstChild);
+    }
 });
