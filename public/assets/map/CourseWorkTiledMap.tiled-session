@@ -3,28 +3,73 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "level_1.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
         "level_1.tmx": {
-            "scale": 1.000892857142857,
-            "selectedLayer": 0,
+            "expandedGroupLayers": [
+                3,
+                9
+            ],
+            "scale": 0.75,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 420.6244424620874,
-                "y": 420.12488849241754
+                "x": 890.6666666666667,
+                "y": 1204.6666666666665
             }
+        },
+        "level_2.tmx": {
+            "expandedGroupLayers": [
+                6,
+                2
+            ],
+            "scale": 0.75,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 719.9999999999999,
+                "y": 1584.6666666666665
+            }
+        },
+        "tileset_1.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "tileset_2.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tileset_3.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tileset_4.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tileset_5.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
-    "map.height": 70,
+    "last.imagePath": "/home/mikeasta/Programming/WebTechnologiesCourseWork/public/assets/map",
+    "map.height": 60,
     "map.lastUsedFormat": "tmx",
-    "map.tileHeight": 12,
-    "map.tileWidth": 12,
-    "map.width": 70,
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "map.width": 60,
     "openFiles": [
+        "level_1.tmx"
     ],
     "project": "CourseWorkTiledMap.tiled-project",
     "recentFiles": [
-        "level_1.tmx"
-    ]
+        "level_1.tmx",
+        "tileset_5.tsx",
+        "tileset_4.tsx",
+        "tileset_3.tsx",
+        "tileset_2.tsx",
+        "tileset_1.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
 }
