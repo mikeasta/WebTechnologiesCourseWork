@@ -7,17 +7,18 @@
     "expandedProjectPaths": [
         "."
     ],
+    "exportAsImage.useCurrentScale": true,
     "fileStates": {
         "level_1.tmx": {
             "expandedGroupLayers": [
                 3,
                 9
             ],
-            "scale": 0.75,
+            "scale": 2,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 890.6666666666667,
-                "y": 1204.6666666666665
+                "x": 475,
+                "y": 272.25
             }
         },
         "level_2.tmx": {
@@ -25,11 +26,11 @@
                 6,
                 2
             ],
-            "scale": 0.75,
-            "selectedLayer": 6,
+            "scale": 2,
+            "selectedLayer": 9,
             "viewCenter": {
-                "x": 719.9999999999999,
-                "y": 1584.6666666666665
+                "x": 878,
+                "y": 1544.75
             }
         },
         "tileset_1.tsx": {
@@ -60,10 +61,12 @@
     "map.tileWidth": 32,
     "map.width": 60,
     "openFiles": [
-        "level_1.tmx"
+        "level_1.tmx",
+        "level_2.tmx"
     ],
     "project": "CourseWorkTiledMap.tiled-project",
     "recentFiles": [
+        "level_2.tmx",
         "level_1.tmx",
         "tileset_5.tsx",
         "tileset_4.tsx",

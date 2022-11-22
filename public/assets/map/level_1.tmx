@@ -263,7 +263,7 @@
 </data>
   </layer>
  </group>
- <group id="9" name="UX">
+ <group id="9" name="UX" visible="0">
   <layer id="10" name="Collisions" width="60" height="60" opacity="0.52">
    <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
