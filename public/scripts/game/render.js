@@ -1,6 +1,11 @@
-// Map's paths
-const path_level_1 = "assets/map/level_1.png";
-const path_level_2 = "assets/map/level_2.png";
+// * ASSETS PATH IMPORTS
+import {
+    playerIdle,
+    playerRun,
+    playerShoot,
+    playerDeath,
+    levels
+} from "./render_paths.js"
 
 // Canvas import
 const canvas = document.getElementById("playground");
@@ -10,15 +15,35 @@ const c      = canvas.getContext('2d');
 canvas.width  = 1600;
 canvas.height = 900;
 
-// Prepare maps for render
+
+// Player Setup
+const player_image  = new Image();
+player_image.src    = playerIdle.left;
+player_image.width  = playerIdle.frames * playerIdle.size;
+player_image.height = playerIdle.size
+
+
+// Prepare maps' images for render
 const image_level_1 = new Image();
 const image_level_2 = new Image();
 
-// Set paths
-image_level_1.src = path_level_1;
-image_level_2.src = path_level_2;
+// Set paths 
+image_level_1.src = levels.image_paths[0];
+image_level_2.src = levels.image_paths[2];
 
-console.log(image_level_1)
 
 // Draw level
-image_level_1.onload = () => c.drawImage(image_level_1, 0, 0)
+image_level_1.onload = async () => { 
+    await c.drawImage(image_level_1, -128, -128);
+    await c.drawImage(
+        player_image, // Image
+        0, // Crop left upper corner
+        0,
+        player_image.width / 2, // crop right lower corner
+        player_image.height,
+        544, // Image place position
+        256,
+        playerIdle.size, // Image size
+        playerIdle.size
+    )
+}

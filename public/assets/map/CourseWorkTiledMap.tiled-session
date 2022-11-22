@@ -23,14 +23,14 @@
         },
         "level_2.tmx": {
             "expandedGroupLayers": [
-                6,
-                2
+                2,
+                6
             ],
             "scale": 2,
             "selectedLayer": 9,
             "viewCenter": {
-                "x": 878,
-                "y": 1544.75
+                "x": 960,
+                "y": 960
             }
         },
         "tileset_1.tsx": {
