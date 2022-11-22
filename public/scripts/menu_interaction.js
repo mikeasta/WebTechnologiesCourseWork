@@ -4,22 +4,27 @@ const leaderboardsButton      = document.getElementById("leaderboards_btn")
 const leaderboardsCloseButton = document.getElementById("leaderboards_close_btn")
 const toHome                  = document.getElementById("to_home")
 
+
 // Section imports
 const mainMenu                 = document.getElementById("main_menu_wrapper")
 const leaderboardsTable        = document.getElementById("leaderboards_table_body")
 const leaderboardsTableWrapper = document.getElementById("leaderboards_wrapper")
 const gameplayMenu             = document.getElementById("gameplay_screen")
 
+
 // Input imports
 const nicknameInput = document.getElementById("nickname_input")
+
+
+// Stats fields
+const playerNickname = document.getElementById("playerNickname")
+const playerLevel    = document.getElementById("playerLevel")
+const playerScore    = document.getElementById("playerScore")
+
 
 // Database relative path
 const leaderboardsDatabasePath = "./../../database/dumb_leaderboards.json";
 
-// Stats fields
-const playerNickname = document.getElementById("gameplay_player_name")
-const playerScore    = document.getElementById("gameplay_player_score")
-const playerBuffs    = document.getElementById("gameplay_player_buffs")
 
 localStorage["leaderboards"] = JSON.stringify({leaderboards: [
     {
@@ -35,6 +40,7 @@ localStorage["leaderboards"] = JSON.stringify({leaderboards: [
         score: "256"
     },
 ]})
+
 
 // Game start click
 startGameButton.addEventListener("click", async () => {
@@ -54,24 +60,19 @@ startGameButton.addEventListener("click", async () => {
     localStorage["player.nickname"] = JSON.stringify({nickname})
 
     // If nickname is exists
+    // Open gameplay window
     leaderboardsTable.style.display = "none";
     mainMenu.style.display          = "none";
 
-    // Initialize name and start score
-    playerNickname.innerHTML = `Name: <b>${nickname}</b>`
-    playerScore.innerHTML    = `Score: <b>0</b>`
+    // Fill elements
+    playerNickname.innerHTML = nickname;
+    playerLevel.innerHTML    = "Level: 1";
+    playerScore.innerHTML    = "Score: 0:00";
 
     // Memory Cleaning:
     // If nothing refers to DOM-object, JS' GC will delete required elements permanently
-    while (leaderboardsTable.firstChild) {
+    while (leaderboardsTable.firstChild) 
         leaderboardsTable.removeChild(leaderboardsTable.firstChild);
-    }
-
-    // Cleaning buff list
-    // Img like: <img src="" alt="" class="gameplay_player_buff">
-    while (playerBuffs.firstChild) {
-        playerBuffs.removeChild(playerBuffs.firstChild);
-    }
 
     // Activate gameplay menu
     gameplayMenu.style.display = "flex";
@@ -112,6 +113,7 @@ leaderboardsButton.addEventListener("click", async () => {
     leaderboardsTableWrapper.style.display = "flex";
 });
 
+
 // Leaderboard close
 leaderboardsCloseButton.addEventListener("click", () => {
     // Unable leaderboards table for interaction
@@ -119,10 +121,10 @@ leaderboardsCloseButton.addEventListener("click", () => {
 
     // Memory Cleaning:
     // If nothing refers to DOM-object, JS' GC will delete required elements permanently
-    while (leaderboardsTable.firstChild) {
+    while (leaderboardsTable.firstChild) 
         leaderboardsTable.removeChild(leaderboardsTable.firstChild);
-    }
 });
+
 
 // Return home button
 toHome.addEventListener("click", () => {

@@ -19,8 +19,7 @@
     color: #ecf0f1;
 
     /* Coloring */
-    background-color: #3498db;
-    box-shadow: 20px 20px rgba(0, 0, 0, 0.3);
+    background-color: #34495e;
 }
 
 #main_menu_wrapper * {
@@ -35,7 +34,7 @@
     width: 15%;
     height: 10%;
     outline: none;
-    background-color: #216694;
+    background-color: #2c3e50;
     font-size: 18px;
 }
 
@@ -49,14 +48,15 @@
     padding: 10px 25px;
 
     /* Coloring */
-    background-color: #3498db;
-    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+    background-color: #2c3e50;
+    box-shadow: 5px 5px rgba(0,0,0,0.5);
     border: 3px solid #ecf0f1;
 }
 
 #main_menu_wrapper button:hover {
     /* Cursor hover config */
     transition: .2s;
-    background-color: #38a4ec;
+    background-color: #2c3e50;
     cursor: pointer;
+    box-shadow: 7px 7px rgba(0,0,0,0.5);
 }
