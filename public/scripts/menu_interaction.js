@@ -22,10 +22,6 @@ const playerLevel    = document.getElementById("playerLevel")
 const playerScore    = document.getElementById("playerScore")
 
 
-// Database relative path
-const leaderboardsDatabasePath = "./../../database/dumb_leaderboards.json";
-
-
 localStorage["leaderboards"] = JSON.stringify({leaderboards: [
     {
         name: "Mike",
@@ -67,7 +63,7 @@ startGameButton.addEventListener("click", async () => {
     // Fill elements
     playerNickname.innerHTML = nickname;
     playerLevel.innerHTML    = "Level: 1";
-    playerScore.innerHTML    = "Score: 0:00";
+    playerScore.innerHTML    = "Score: 00:00:00";
 
     // Memory Cleaning:
     // If nothing refers to DOM-object, JS' GC will delete required elements permanently
