@@ -20,25 +20,28 @@ export class Controller {
         // Move up event
         entity.x += 1;
     }
-}
 
-export const setupKeyboardListener = (game, movable_entity) => {
-    document.addEventListener("keydown", (e) => {
-        // Check if game is over
-        if (game.gameover) return;
+    setupKeyboardListener = (game, movable_entity, render_engine) => {
+        document.addEventListener("keydown", (e) => {
+            // Check if game is over
+            if (game.gameover) return;
+    
+            // Code of the pressed key (common for upper- and lowercase)
+            const keyCode = e.code;
+    
+            // Initialize controller
+            const controller = new Controller()
+    
+            // Move player
+            switch (keyCode){
+                case "KeyA": controller.moveLeft(movable_entity);  break;
+                case "KeyD": controller.moveRight(movable_entity); break;
+                case "KeyW": controller.moveUp(movable_entity);    break;
+                case "KeyS": controller.moveDown(movable_entity);  break; 
+            }
 
-        // Code of the pressed key (common for upper- and lowercase)
-        const keyCode = e.code;
-
-        // Initialize controller
-        const controller = new Controller()
-
-        // Move player
-        switch (keyCode){
-            case "KeyA": controller.moveLeft(movable_entity);  break;
-            case "KeyD": controller.moveRight(movable_entity); break;
-            case "KeyW": controller.moveUp(movable_entity);    break;
-            case "KeyS": controller.moveDown(movable_entity);  break; 
-        }
-    });
+            // Render
+            render_engine.render()
+        });
+    }
 }
