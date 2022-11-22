@@ -16,14 +16,22 @@ import {
 } from "./render_paths.js"
 
 
-// *CANVAS SETUP
-// Prepare canvas elements
-const canvas = document.getElementById("playground");
-const c      = canvas.getContext('2d');
+export class Render {
+    constructor () {
+        // *CANVAS SETUP
+        // Prepare canvas elements
+        this.canvas = document.getElementById("playground");
+        this.c      = canvas.getContext('2d');
 
-// Canvas size
-canvas.width  = 1600;
-canvas.height = 900;
+        // Canvas size
+        this.canvas.width  = 1600;
+        this.canvas.height = 900;
+    }
+
+    render = () => {}
+}
+
+
 
 // * IMAGES SETUP
 // Prepare maps' images for render
@@ -38,15 +46,4 @@ image_level_2.src = levels.image_paths[2];
 // Draw level
 image_level_1.onload = async () => { 
     await c.drawImage(image_level_1, -128, -128);
-    await c.drawImage(
-        player_image, // Image
-        0, // Crop left upper corner
-        0,
-        player_image.width / 2, // crop right lower corner
-        player_image.height,
-        544, // Image place position
-        256,
-        playerIdle.size, // Image size
-        playerIdle.size
-    )
 }

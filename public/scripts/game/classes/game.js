@@ -17,6 +17,10 @@ export class Game {
         // Game start
     }
 
+    loop = () => {
+        // Game loop
+    }
+
     finish = () => {
         // if game over
         if (this.gameover) {
