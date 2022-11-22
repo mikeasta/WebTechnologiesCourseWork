@@ -4,10 +4,20 @@ import {
     playerRun,
     playerShoot,
     playerDeath,
+    enemyIdle,
+    enemyRun,
+    enemyShoot,
+    enemyDeath,
+    bossIdle,
+    bossRun,
+    bossShoot,
+    bossDeath,
     levels
 } from "./render_paths.js"
 
-// Canvas import
+
+// *CANVAS SETUP
+// Prepare canvas elements
 const canvas = document.getElementById("playground");
 const c      = canvas.getContext('2d');
 
@@ -15,14 +25,7 @@ const c      = canvas.getContext('2d');
 canvas.width  = 1600;
 canvas.height = 900;
 
-
-// Player Setup
-const player_image  = new Image();
-player_image.src    = playerIdle.left;
-player_image.width  = playerIdle.frames * playerIdle.size;
-player_image.height = playerIdle.size
-
-
+// * IMAGES SETUP
 // Prepare maps' images for render
 const image_level_1 = new Image();
 const image_level_2 = new Image();

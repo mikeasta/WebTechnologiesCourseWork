@@ -4,6 +4,28 @@ export class Game {
         this.level = 1;
 
         // Start timestamp
-        this.startTime = new Date()
+        this.startTime = new Date();
+
+        // Game over flag
+        this.gameover = false;
+
+        // Game finished flag
+        this.finished = false
+    }
+
+    start = () => {
+        // Game start
+    }
+
+    finish = () => {
+        // if game over
+        if (this.gameover) {
+
+        }
+
+        // If game finished
+        if (this.finished) {
+            
+        }
     }
 }
