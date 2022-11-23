@@ -3,22 +3,24 @@ export class Controller {
 
     moveUp = (entity) => {
         // Move up event
-        entity.y -= 1;
+        entity.y -= 10;
     }
 
     moveDown = (entity) => {
         // Move down event
-        entity.y += 1;
+        entity.y += 10;
     }
 
-    moveleft = (entity) => {
+    moveLeft = (entity) => {
         // Move up event
-        entity.x -= 1;
+        entity.x -= 10;
+        entity.direction = "left"
     }
 
     moveRight = (entity) => {
         // Move up event
-        entity.x += 1;
+        entity.x += 10;
+        entity.direction = "right"
     }
 
     setupKeyboardListener = (game, movable_entity, render_engine) => {
@@ -28,7 +30,7 @@ export class Controller {
     
             // Code of the pressed key (common for upper- and lowercase)
             const keyCode = e.code;
-    
+
             // Initialize controller
             const controller = new Controller()
     
@@ -39,6 +41,8 @@ export class Controller {
                 case "KeyW": controller.moveUp(movable_entity);    break;
                 case "KeyS": controller.moveDown(movable_entity);  break; 
             }
+
+            console.log(keyCode)
 
             // Render
             render_engine.render()

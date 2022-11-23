@@ -1,3 +1,6 @@
+// Imports
+import { Game } from "./game/classes/game.js"
+
 // Button imports
 const startGameButton         = document.getElementById("start_btn")
 const leaderboardsButton      = document.getElementById("leaderboards_btn")
@@ -63,7 +66,7 @@ startGameButton.addEventListener("click", async () => {
     // Fill elements
     playerNickname.innerHTML = nickname;
     playerLevel.innerHTML    = "Level: 1";
-    playerScore.innerHTML    = "Score: 00:00:00";
+    playerScore.innerHTML    = "Score: 00:00";
 
     // Memory Cleaning:
     // If nothing refers to DOM-object, JS' GC will delete required elements permanently
@@ -72,6 +75,10 @@ startGameButton.addEventListener("click", async () => {
 
     // Activate gameplay menu
     gameplayMenu.style.display = "flex";
+
+    // Game start
+    const g = new Game();
+    g.start()
 });
 
 
