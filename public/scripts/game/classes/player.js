@@ -6,6 +6,9 @@ export class Player {
         // Player state: "idle", "run", "shoot", "death"
         this.state = "idle"
 
+        // Animation tick
+        this.animation_state = 0;
+
         // Player start health (in DMG)
         this.health = 100;
 
@@ -24,7 +27,7 @@ export class Player {
         this.velocity_y              = 0;
         this.force_acceleration      = 5;
         this.resistance_acceleration = 7;
-        this.max_velocity            = 30; // also in the other direction
+        this.max_velocity            = 20; // also in the other direction
 
     }
 
@@ -33,6 +36,10 @@ export class Player {
     move = () => {
         this.x += this.velocity_x;
         this.y += this.velocity_y;
+    }
+
+    forward_animation = () => {
+        this.animation_state = this.animation_state > 6 ? 0: this.animation_state + 1;
     }
 
     // Adds gotten acceleration to player speed

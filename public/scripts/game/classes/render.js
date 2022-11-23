@@ -31,6 +31,10 @@ export class Render {
         this.level_x = 0;
         this.level_y = 0;
 
+        // Player centering parameters
+        this.player_center_x = 750;
+        this.player_center_y = 400;
+
         // *CANVAS SETUP
         // Prepare canvas elements
         this.canvas = document.getElementById("playground");
@@ -56,12 +60,9 @@ export class Render {
     }
 
     render = async () => {
-
-        // Check player character direction
-        this.player_image.src = this.game.player.direction === "right" ? playerIdle.right : playerIdle.left;
-
         // Clear canvas 
         this.c.clearRect(0, 0, this.canvas.width, this.canvas.height)
+
 
         // Draw level
         await this.c.drawImage(
@@ -70,19 +71,31 @@ export class Render {
             -this.game.player.y 
         );
         
+
+        // Define player animation
+        let animation;
+        switch (this.game.player.state) {
+            case "idle": animation = playerIdle; break;
+            case "run" : animation = playerRun; break;
+        }
+
+
+        // Check player character direction
+        this.player_image.src = this.game.player.direction === "right" ? animation.right : animation.left;
+
+        
         // Draw player
         await this.c.drawImage(
             this.player_image, 
+            this.player_image.width / animation.frames * (this.game.player.animation_state % animation.frames),
             0,
-            0,
-            this.player_image.width / 2,
+            this.player_image.width / animation.frames,
             this.player_image.height,
-            750, 
-            400,
-            this.player_image.width / 2,
+            this.player_center_x, 
+            this.player_center_y,
+            this.player_image.width / animation.frames,
             this.player_image.height,
         );
-
     }
 }
 

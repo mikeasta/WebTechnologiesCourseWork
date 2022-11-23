@@ -20,10 +20,13 @@ export class Game {
         this.gameover = false;
 
         // Game finished flag
-        this.finished = false
+        this.finished = false;
 
         // Game loop update frequency (ms)
-        this.render_frequency = 100
+        this.render_frequency = 100;
+
+        // Game animation frequency (ms)
+        this.animation_frequency = 300;
     }
 
     // Game start func
@@ -53,13 +56,19 @@ export class Game {
         this.auto_render_loop = setInterval(this.render_engine.render, this.render_frequency);
 
         // Define player move loop
-        this.auto_player_move = setInterval(() => {
-            this.player.move();
-            this.player.resist();
-        }, 100)
+        this.auto_player_move = setInterval(this.move_player, this.render_frequency)
 
         // Clock update interval
-        this.auto_clock_loop  = setInterval(this.clock_tick, 1000);
+        this.auto_clock_loop = setInterval(this.clock_tick, 1000);
+
+        // Set player animation
+        this.auto_player_forward_animation = setInterval(this.player.forward_animation, this.animation_frequency)
+    }
+
+    // Move player
+    move_player = () => {
+        this.player.move();
+        this.player.resist();
     }
 
     // UI timer 
