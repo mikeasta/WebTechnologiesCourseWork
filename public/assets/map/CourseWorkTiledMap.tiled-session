@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "level_2.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -18,7 +18,7 @@
             "selectedLayer": 8,
             "viewCenter": {
                 "x": 457.25,
-                "y": 271.75
+                "y": 271.5
             }
         },
         "level_2.tmx": {
@@ -30,7 +30,7 @@
             "selectedLayer": 9,
             "viewCenter": {
                 "x": 533.75,
-                "y": 1604.75
+                "y": 1604.5
             }
         },
         "tileset_1.tsx": {
@@ -54,18 +54,21 @@
             "scaleInEditor": 1
         }
     },
+    "last.exportedFilePath": "/home/mikeasta/Programming/WebTechnologiesCourseWork/public/assets/map",
     "last.imagePath": "/home/mikeasta/Programming/WebTechnologiesCourseWork/public/assets/map",
     "map.height": 60,
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 32,
     "map.tileWidth": 32,
     "map.width": 60,
     "openFiles": [
+        "level_2.tmx"
     ],
     "project": "CourseWorkTiledMap.tiled-project",
     "recentFiles": [
-        "level_1.tmx",
         "level_2.tmx",
+        "level_1.tmx",
         "tileset_5.tsx",
         "tileset_4.tsx",
         "tileset_3.tsx",
