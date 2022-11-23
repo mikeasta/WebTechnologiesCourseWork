@@ -31,23 +31,23 @@ export class Controller {
     }
 
     moveLeft = entity => {
-        // Move up event
+        // Move left event
         entity.speed_up(-entity.force_acceleration, 0);
         entity.direction = "left"
     }
 
     moveRight = entity => {
-        // Move up event
+        // Move right event
         entity.speed_up(entity.force_acceleration, 0);
         entity.direction = "right"
     }
 
+    // Setting up keyboard event listeners
     setupKeyboardListener = game => {
-
         // On button click
         document.addEventListener("keydown", (e) => {
             // Check if game is over
-            if (game.gameover) return;
+            if (game.gameover || game.finished) return;
     
             // Code of the pressed key (common for upper- and lowercase)
             const keyCode = e.code;
@@ -67,7 +67,7 @@ export class Controller {
         // On button un-click
         document.addEventListener("keyup", (e) => {
             // Check if game is over
-            if (game.gameover) return;
+            if (game.gameover || game.finished) return;
     
             // Code of the pressed key (common for upper- and lowercase)
             const keyCode = e.code;
@@ -84,9 +84,10 @@ export class Controller {
         });
 
 
+        // Interval for automatic key pressing
         const keyCheck = setInterval(() => {
             // Check if game is over
-            if (game.gameover) clearInterval(keyCheck);
+            if (game.gameover || game.finished) clearInterval(keyCheck);
 
             // Perform all buttons
             Object.keys(this.controller_keys).forEach( key => {
