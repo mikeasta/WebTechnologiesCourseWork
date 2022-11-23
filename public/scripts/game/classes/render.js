@@ -73,8 +73,14 @@ export class Render {
         // Draw player
         await this.c.drawImage(
             this.player_image, 
+            0,
+            0,
+            this.player_image.width / 2,
+            this.player_image.height,
             750, 
-            400
+            400,
+            this.player_image.width / 2,
+            this.player_image.height,
         );
 
     }

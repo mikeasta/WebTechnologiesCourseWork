@@ -1,29 +1,29 @@
 export class Controller {
     constructor() {}
 
-    moveUp = (entity) => {
+    moveUp = entity => {
         // Move up event
-        entity.y -= 10;
+        entity.speed_up(0, -entity.force_acceleration);
     }
 
-    moveDown = (entity) => {
+    moveDown = entity => {
         // Move down event
-        entity.y += 10;
+        entity.speed_up(0, entity.force_acceleration);
     }
 
-    moveLeft = (entity) => {
+    moveLeft = entity => {
         // Move up event
-        entity.x -= 10;
+        entity.speed_up(-entity.force_acceleration, 0);
         entity.direction = "left"
     }
 
-    moveRight = (entity) => {
+    moveRight = entity => {
         // Move up event
-        entity.x += 10;
+        entity.speed_up(entity.force_acceleration, 0);
         entity.direction = "right"
     }
 
-    setupKeyboardListener = (game, movable_entity, render_engine) => {
+    setupKeyboardListener = game => {
         document.addEventListener("keydown", (e) => {
             // Check if game is over
             if (game.gameover) return;
@@ -36,16 +36,11 @@ export class Controller {
     
             // Move player
             switch (keyCode){
-                case "KeyA": controller.moveLeft(movable_entity);  break;
-                case "KeyD": controller.moveRight(movable_entity); break;
-                case "KeyW": controller.moveUp(movable_entity);    break;
-                case "KeyS": controller.moveDown(movable_entity);  break; 
+                case "KeyA": controller.moveLeft(game.player);  break;
+                case "KeyD": controller.moveRight(game.player); break;
+                case "KeyW": controller.moveUp(game.player);    break;
+                case "KeyS": controller.moveDown(game.player);  break; 
             }
-
-            console.log(keyCode)
-
-            // Render
-            render_engine.render()
         });
     }
 }

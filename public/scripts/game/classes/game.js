@@ -40,7 +40,7 @@ export class Game {
         this.controller    = new Controller();
 
         // Keyboard listener setup
-        this.controller.setupKeyboardListener(this, this.player, this.render_engine);
+        this.controller.setupKeyboardListener(this);
 
         // Start game loop
         this.loop();
@@ -49,6 +49,12 @@ export class Game {
     loop = () => {
         // Define loop interval
         this.auto_render_loop = setInterval(this.render_engine.render, this.render_frequency);
+
+        // Define player move loop
+        this.auto_player_move = setInterval(() => {
+            this.player.move();
+            this.player.resist();
+        }, 100)
 
         // Clock update interval
         this.auto_clock_loop  = setInterval(this.clock_tick, 1000);
