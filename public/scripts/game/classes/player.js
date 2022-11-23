@@ -3,6 +3,9 @@ export class Player {
         // Direction of player model: "left" or "right"
         this.direction = "right";
 
+        // Player state: "idle", "run", "shoot", "death"
+        this.state = "idle"
+
         // Player start health (in DMG)
         this.health = 100;
 
@@ -19,8 +22,8 @@ export class Player {
         // Player physics params 
         this.velocity_x              = 0;
         this.velocity_y              = 0;
-        this.force_acceleration      = 3;
-        this.resistance_acceleration = 5;
+        this.force_acceleration      = 5;
+        this.resistance_acceleration = 7;
         this.max_velocity            = 30; // also in the other direction
 
     }
@@ -50,6 +53,10 @@ export class Player {
                 -this.max_velocity :
                 this.velocity_y + accel_y;
         }
+
+        // Player's sprite starts running
+        if (this.velocity_x != 0 || this.velocity_y != 0)
+            this.state = "run"
     }
 
     resist = () => {
@@ -76,5 +83,9 @@ export class Player {
                 0 : 
                 this.velocity_y - this.resistance_acceleration;
         }
+
+        // "Calm down" player's sprite
+        if (this.velocity_x === 0 && this.velocity_y === 0) 
+            this.state = "idle";
     }
 }

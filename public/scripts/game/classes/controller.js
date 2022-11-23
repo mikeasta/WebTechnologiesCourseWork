@@ -1,5 +1,24 @@
 export class Controller {
-    constructor() {}
+    constructor() {
+        this.controller_keys = {
+            "KeyA": { 
+                pressed: false, 
+                perform: (e) => this.moveLeft(e)
+            },
+            "KeyD": { 
+                pressed: false, 
+                perform: (e) => this.moveRight(e)
+            },
+            "KeyW": { 
+                pressed: false, 
+                perform: (e) => this.moveUp(e)
+            },
+            "KeyS": { 
+                pressed: false, 
+                perform: (e) => this.moveDown(e)
+            }
+        }
+    }
 
     moveUp = entity => {
         // Move up event
@@ -24,6 +43,8 @@ export class Controller {
     }
 
     setupKeyboardListener = game => {
+
+        // On button click
         document.addEventListener("keydown", (e) => {
             // Check if game is over
             if (game.gameover) return;
@@ -31,16 +52,47 @@ export class Controller {
             // Code of the pressed key (common for upper- and lowercase)
             const keyCode = e.code;
 
-            // Initialize controller
-            const controller = new Controller()
-    
-            // Move player
-            switch (keyCode){
-                case "KeyA": controller.moveLeft(game.player);  break;
-                case "KeyD": controller.moveRight(game.player); break;
-                case "KeyW": controller.moveUp(game.player);    break;
-                case "KeyS": controller.moveDown(game.player);  break; 
-            }
+            // Change key info
+            if (this.controller_keys[keyCode])
+                this.controller_keys[keyCode].pressed = true
+
+            // Perform all buttons
+            Object.keys(this.controller_keys).forEach( key => {
+                if (this.controller_keys[key].pressed) 
+                    this.controller_keys[key].perform(game.player)
+            })
         });
+
+
+        // On button un-click
+        document.addEventListener("keyup", (e) => {
+            // Check if game is over
+            if (game.gameover) return;
+    
+            // Code of the pressed key (common for upper- and lowercase)
+            const keyCode = e.code;
+
+            // Change key info
+            if (this.controller_keys[keyCode])
+                this.controller_keys[keyCode].pressed = false
+
+            // Perform all buttons
+            Object.keys(this.controller_keys).forEach( key => {
+                if (this.controller_keys[key].pressed) 
+                    this.controller_keys[key].perform(game.player)
+            })
+        });
+
+
+        const keyCheck = setInterval(() => {
+            // Check if game is over
+            if (game.gameover) clearInterval(keyCheck);
+
+            // Perform all buttons
+            Object.keys(this.controller_keys).forEach( key => {
+                if (this.controller_keys[key].pressed) 
+                    this.controller_keys[key].perform(game.player)
+            })
+        }, 50)
     }
 }
