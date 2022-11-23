@@ -26,7 +26,7 @@ export class Player {
         this.velocity_x              = 0;
         this.velocity_y              = 0;
         this.force_acceleration      = 5;
-        this.resistance_acceleration = 7;
+        this.resistance_acceleration = 5;
         this.max_velocity            = 20; // also in the other direction
 
     }
@@ -38,8 +38,21 @@ export class Player {
         this.y += this.velocity_y;
     }
 
+    // Start shoot animation
+    shoot = () => {
+        this.animation_state = 0;
+        this.state           = 'shoot';
+    }
+
+    // Increase animation step
     forward_animation = () => {
-        this.animation_state = this.animation_state > 6 ? 0: this.animation_state + 1;
+        if (this.state === "shoot" && this.animation_state > 2) {
+            this.state = "idle";
+        } else if (this.animation_state > 6) {
+            this.animation_state = 0;
+        } else  {
+            this.animation_state += 1;
+        }
     }
 
     // Adds gotten acceleration to player speed
@@ -65,7 +78,7 @@ export class Player {
         }
 
         // Player's sprite starts running
-        if (this.velocity_x != 0 || this.velocity_y != 0)
+        if ((this.velocity_x != 0 || this.velocity_y != 0) && this.state != "shoot")
             this.state = "run"
     }
 
@@ -97,7 +110,7 @@ export class Player {
         }
 
         // "Calm down" player's sprite
-        if (this.velocity_x === 0 && this.velocity_y === 0) 
+        if ((this.velocity_x === 0 && this.velocity_y === 0) && this.state != "shoot")
             this.state = "idle";
     }
 }

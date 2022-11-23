@@ -75,8 +75,9 @@ export class Render {
         // Define player animation
         let animation;
         switch (this.game.player.state) {
-            case "idle": animation = playerIdle; break;
-            case "run" : animation = playerRun; break;
+            case "idle":  animation = playerIdle; break;
+            case "run" :  animation = playerRun; break;
+            case "shoot": animation = playerShoot; break;
         }
 
 

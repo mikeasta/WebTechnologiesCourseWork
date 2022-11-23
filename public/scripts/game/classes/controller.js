@@ -42,8 +42,21 @@ export class Controller {
         entity.direction = "right"
     }
 
+    // Shoot
+    shoot = entity => {
+        entity.shoot()
+    }
+
     // Setting up keyboard event listeners
     setupKeyboardListener = game => {
+        // On mouse click
+        document.addEventListener("click", (e) => {
+            // Check if game is over
+            if (game.gameover || game.finished) return;
+
+            this.shoot(game.player)
+        })
+
         // On button click
         document.addEventListener("keydown", (e) => {
             // Check if game is over
@@ -51,6 +64,7 @@ export class Controller {
     
             // Code of the pressed key (common for upper- and lowercase)
             const keyCode = e.code;
+            console.log(keyCode)
 
             // Change key info
             if (this.controller_keys[keyCode])
@@ -94,6 +108,6 @@ export class Controller {
                 if (this.controller_keys[key].pressed) 
                     this.controller_keys[key].perform(game.player)
             })
-        }, 50)
+        }, 25)
     }
 }

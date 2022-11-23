@@ -23,7 +23,7 @@ export class Game {
         this.finished = false;
 
         // Game loop update frequency (ms)
-        this.render_frequency = 100;
+        this.render_frequency = 50;
 
         // Game animation frequency (ms)
         this.animation_frequency = 300;
