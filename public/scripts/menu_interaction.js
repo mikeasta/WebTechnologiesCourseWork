@@ -41,8 +41,13 @@ localStorage["leaderboards"] = JSON.stringify({leaderboards: [
 ]})
 
 
+// * GAME INITIALIZATION
+let game;
+
 // Game start click
 startGameButton.addEventListener("click", async () => {
+    // New game initialization
+    game = new Game();
 
     // Reading Nickname input contents and than define
     // what will we do next
@@ -77,8 +82,7 @@ startGameButton.addEventListener("click", async () => {
     gameplayMenu.style.display = "flex";
 
     // Game start
-    const g = new Game();
-    g.start()
+    game.start()
 });
 
 
@@ -134,6 +138,9 @@ toHome.addEventListener("click", () => {
     // Close gameplay screen, open main menu
     mainMenu.style.display     = "flex";
     gameplayMenu.style.display = "none";
+    
+    // Finish game
+    game.finish()
     
     // Save data
     // ...

@@ -51,23 +51,29 @@ export class Game {
         this.auto_render_loop = setInterval(this.render_engine.render, this.render_frequency);
 
         // Clock update interval
-        this.auto_clock_loop  = setInterval(() => {
-            const cur = new Date().getTime();
-            const diff = cur - this.startTime;
+        this.auto_clock_loop  = setInterval(this.clock_tick, 1000);
+    }
 
-            let diffInSec = Math.floor(diff / 1000);
-            let diffInMin = Math.floor(diffInSec / 60);
+    clock_tick = () => {
+        const cur  = new Date().getTime();
+        const diff = cur - this.startTime;
 
-            diffInSec = diffInSec - diffInMin * 60;
+        let diffInSec = Math.floor(diff / 1000);
+        let diffInMin = Math.floor(diffInSec / 60);
+        diffInSec     = diffInSec - diffInMin * 60;
 
-            if (diffInSec < 10) diffInSec = "0" + diffInSec;
-            if (diffInMin < 10) diffInMin = "0" + diffInMin;
+        if (diffInSec < 10) diffInSec = "0" + diffInSec;
+        if (diffInMin < 10) diffInMin = "0" + diffInMin;
 
-            this.clock.innerHTML = `Score: ${diffInMin}:${diffInSec}`
-        }, 1000);
+        this.clock.innerHTML = `Score: ${diffInMin}:${diffInSec}`
     }
 
     finish = () => {
+
+        // Clear current loops
+        clearInterval(this.auto_render_loop)
+        clearInterval(this.auto_clock_loop)
+
         // if game over
         if (this.gameover) {
 
