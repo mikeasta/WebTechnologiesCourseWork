@@ -26,6 +26,7 @@ export class Game {
         this.render_frequency = 100
     }
 
+    // Game start func
     start = () => {
         // Game start
         // Check if game is already started
@@ -46,6 +47,7 @@ export class Game {
         this.loop();
     }
 
+    // Starting game loops
     loop = () => {
         // Define loop interval
         this.auto_render_loop = setInterval(this.render_engine.render, this.render_frequency);
@@ -60,6 +62,7 @@ export class Game {
         this.auto_clock_loop  = setInterval(this.clock_tick, 1000);
     }
 
+    // UI timer 
     clock_tick = () => {
         const cur  = new Date().getTime();
         const diff = cur - this.startTime;
@@ -74,11 +77,13 @@ export class Game {
         this.clock.innerHTML = `Score: ${diffInMin}:${diffInSec}`
     }
 
+    // Ending of game
     finish = () => {
 
         // Clear current loops
         clearInterval(this.auto_render_loop)
         clearInterval(this.auto_clock_loop)
+        clearInterval(this.auto_player_move)
 
         // if game over
         if (this.gameover) {

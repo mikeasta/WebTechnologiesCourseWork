@@ -28,11 +28,14 @@ export class Player {
 
     }
 
+    // Changes player position according to his velocity
+    // Performs each 0.1 sec in Game class.
     move = () => {
         this.x += this.velocity_x;
         this.y += this.velocity_y;
     }
 
+    // Adds gotten acceleration to player speed
     speed_up = (accel_x, accel_y) => {
         if (accel_x > 0) {
             this.velocity_x = this.velocity_x + accel_x > this.max_velocity ?
@@ -59,6 +62,8 @@ export class Player {
             this.state = "run"
     }
 
+
+    // Simulates force of resistance and stops player
     resist = () => {
         if (this.velocity_x < 0) {
             this.velocity_x = 
