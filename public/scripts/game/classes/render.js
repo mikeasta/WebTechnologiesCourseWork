@@ -13,7 +13,7 @@ import {
     bossShoot,
     bossDeath,
     levels
-} from "../render_paths.js"
+} from "../data/render_paths.js"
 
 class Sprite {
     constructor(image_url) {
