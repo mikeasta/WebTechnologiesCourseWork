@@ -64,7 +64,6 @@ export class Controller {
     
             // Code of the pressed key (common for upper- and lowercase)
             const keyCode = e.code;
-            console.log(keyCode)
 
             // Change key info
             if (this.controller_keys[keyCode])

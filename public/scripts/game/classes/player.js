@@ -1,9 +1,10 @@
 import { MovementEngine } from "./movement_engine.js";
 
-const movement_engine = new MovementEngine();
-
 export class Player {
-    constructor() {
+    constructor(game) {
+        // Game
+        this.game = game;
+
         // Direction of player model: "left" or "right"
         this.direction = "right";
 
@@ -32,12 +33,19 @@ export class Player {
         this.force_acceleration      = 5;
         this.resistance_acceleration = 5;
         this.max_velocity            = 20; // also in the other direction
+
+        // Player size
+        this.width  = 64;
+        this.height = 64;
+
+        // Movement engine
+        this.movement_engine = new MovementEngine(game);
     }
 
     // Changes player position according to his velocity
     // Performs each 0.1 sec in Game class.
     move = () => {
-        movement_engine.move(this)
+        this.movement_engine.move(this)
     }
 
     // Perform a shoot
@@ -62,12 +70,12 @@ export class Player {
 
     // Adds gotten acceleration to player speed
     speed_up = (accel_x, accel_y) => {
-        movement_engine.accelerate(this, accel_x, accel_y);
+        this.movement_engine.accelerate(this, accel_x, accel_y);
     }
 
 
     // Simulates force of resistance and stops player
     resist = () => {
-        movement_engine.resist(this)
+        this.movement_engine.resist(this)
     }
 }

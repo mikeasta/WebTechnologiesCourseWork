@@ -1,3 +1,6 @@
+// Import boundary engine
+import { BoundaryEngine } from "./boundary_engine.js";
+
 // For controlling movement rules
 export class MovementEngine{
     constructor(game) {
@@ -8,7 +11,17 @@ export class MovementEngine{
     // Move entity
     move = entity => {
         // Check if we can move in direction
-        // ..
+        const collision = 
+            this.game.boundary
+                .collision_with_wall(
+                    entity.x + entity.velocity_x,
+                    entity.y + entity.velocity_y,
+                    entity.width,
+                    entity.height
+                )
+
+
+        if (collision) return
 
         // Move entity
         entity.x += entity.velocity_x;

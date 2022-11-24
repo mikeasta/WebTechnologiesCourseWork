@@ -1,6 +1,7 @@
 import { Player } from "./player.js"
 import { Controller } from "./controller.js"
 import { Render } from "./render.js"
+import { BoundaryEngine } from "./boundary_engine.js";
 
 export class Game {
     constructor () {
@@ -27,6 +28,14 @@ export class Game {
 
         // Game animation frequency (ms)
         this.animation_frequency = 300;
+
+        // Tile size (for collisions check)
+        this.tile_size = 64;
+
+        // Offset 
+        this.global_offset = {
+            "1" : { x: 750, y: 400}
+        }
     }
 
     // Game start func
@@ -39,9 +48,10 @@ export class Game {
         this.started = true;
 
         // Game managers setup
-        this.player        = new Player();
+        this.player        = new Player(this);
         this.render_engine = new Render(this);
         this.controller    = new Controller();
+        this.boundary      = new BoundaryEngine(this);
 
         // Keyboard listener setup
         this.controller.setupKeyboardListener(this);

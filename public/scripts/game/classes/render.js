@@ -35,6 +35,9 @@ export class Render {
         this.player_center_x = 750;
         this.player_center_y = 400;
 
+        // * BOUNDARIES
+        this.draw_boundaries =false;
+
         // *CANVAS SETUP
         // Prepare canvas elements
         this.canvas = document.getElementById("playground");
@@ -84,7 +87,25 @@ export class Render {
         // Check player character direction
         this.player_image.src = this.game.player.direction === "right" ? animation.right : animation.left;
 
-        
+
+        // Draw boundaries (test)
+        if (this.draw_boundaries) {
+            let boundaries = [];
+            switch (this.game.level) {
+                case 1: boundaries = this.game.boundary.level_1_boundaries; break;
+                case 2: boundaries = this.game.boundary.level_2_boundaries; break;
+            }
+
+            boundaries.forEach(
+                boundary => boundary.draw(
+                    this.c, 
+                    this.game.player.x,
+                    this.game.player.y
+                )
+            );
+        }
+            
+
         // Draw player
         await this.c.drawImage(
             this.player_image, 
