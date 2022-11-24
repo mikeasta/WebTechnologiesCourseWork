@@ -1,3 +1,7 @@
+import { MovementEngine } from "./movement_engine.js";
+
+const movement_engine = new MovementEngine();
+
 export class Player {
     constructor() {
         // Direction of player model: "left" or "right"
@@ -28,20 +32,21 @@ export class Player {
         this.force_acceleration      = 5;
         this.resistance_acceleration = 5;
         this.max_velocity            = 20; // also in the other direction
-
     }
 
     // Changes player position according to his velocity
     // Performs each 0.1 sec in Game class.
     move = () => {
-        this.x += this.velocity_x;
-        this.y += this.velocity_y;
+        movement_engine.move(this)
     }
 
-    // Start shoot animation
+    // Perform a shoot
     shoot = () => {
+        // Start shoot animation
         this.animation_state = 0;
         this.state           = 'shoot';
+
+        // Create bullet
     }
 
     // Increase animation step
@@ -57,60 +62,12 @@ export class Player {
 
     // Adds gotten acceleration to player speed
     speed_up = (accel_x, accel_y) => {
-        if (accel_x > 0) {
-            this.velocity_x = this.velocity_x + accel_x > this.max_velocity ?
-                this.max_velocity :
-                this.velocity_x + accel_x;
-        } else {
-            this.velocity_x = this.velocity_x + accel_x < -this.max_velocity ?
-                -this.max_velocity :
-                this.velocity_x + accel_x;
-        }
-
-        if (accel_y > 0) {
-            this.velocity_y = this.velocity_y + accel_y > this.max_velocity ?
-                this.max_velocity :
-                this.velocity_y + accel_y;
-        } else {
-            this.velocity_y = this.velocity_y + accel_y < -this.max_velocity ?
-                -this.max_velocity :
-                this.velocity_y + accel_y;
-        }
-
-        // Player's sprite starts running
-        if ((this.velocity_x != 0 || this.velocity_y != 0) && this.state != "shoot")
-            this.state = "run"
+        movement_engine.accelerate(this, accel_x, accel_y);
     }
 
 
     // Simulates force of resistance and stops player
     resist = () => {
-        if (this.velocity_x < 0) {
-            this.velocity_x = 
-                this.velocity_x + this.resistance_acceleration > 0 ? 
-                0 : 
-                this.velocity_x + this.resistance_acceleration;
-        } else {
-            this.velocity_x = 
-                this.velocity_x - this.resistance_acceleration < 0 ? 
-                0 : 
-                this.velocity_x - this.resistance_acceleration;
-        }
-
-        if (this.velocity_y < 0) {
-            this.velocity_y = 
-                this.velocity_y + this.resistance_acceleration > 0 ? 
-                0 : 
-                this.velocity_y + this.resistance_acceleration;
-        } else {
-            this.velocity_y = 
-                this.velocity_y - this.resistance_acceleration < 0 ? 
-                0 : 
-                this.velocity_y - this.resistance_acceleration;
-        }
-
-        // "Calm down" player's sprite
-        if ((this.velocity_x === 0 && this.velocity_y === 0) && this.state != "shoot")
-            this.state = "idle";
+        movement_engine.resist(this)
     }
 }

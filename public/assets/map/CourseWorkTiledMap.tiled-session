@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "level_2.tmx",
+    "activeFile": "level_1.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -17,8 +17,8 @@
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 593.75,
-                "y": 1212.25
+                "x": 473.25,
+                "y": 695.75
             }
         },
         "level_2.tmx": {
@@ -34,7 +34,7 @@
             }
         },
         "tileset_1.tsx": {
-            "scaleInDock": 0.5,
+            "scaleInDock": 1.5,
             "scaleInEditor": 1
         },
         "tileset_2.tsx": {
@@ -63,13 +63,14 @@
     "map.tileWidth": 32,
     "map.width": 60,
     "openFiles": [
-        "level_2.tmx"
+        "level_2.tmx",
+        "level_1.tmx"
     ],
     "project": "CourseWorkTiledMap.tiled-project",
     "recentFiles": [
-        "tileset_1.tsx",
         "level_2.tmx",
         "level_1.tmx",
+        "tileset_1.tsx",
         "tileset_5.tsx",
         "tileset_4.tsx",
         "tileset_3.tsx",
