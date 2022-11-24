@@ -73,6 +73,11 @@ export class Game {
 
     // UI timer 
     clock_tick = () => {
+        this.clock.innerHTML = `Score: ${this.get_current_timer()}`
+    }
+
+    // Get current score (timer)
+    get_current_timer = () => {
         const cur  = new Date().getTime();
         const diff = cur - this.startTime;
 
@@ -83,7 +88,7 @@ export class Game {
         if (diffInSec < 10) diffInSec = "0" + diffInSec;
         if (diffInMin < 10) diffInMin = "0" + diffInMin;
 
-        this.clock.innerHTML = `Score: ${diffInMin}:${diffInSec}`
+        return `${diffInMin}:${diffInSec}`
     }
 
     // Ending of game
