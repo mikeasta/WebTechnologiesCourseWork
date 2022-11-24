@@ -27,7 +27,7 @@ export class Game {
         this.render_frequency = 50;
 
         // Game animation frequency (ms)
-        this.animation_frequency = 300;
+        this.animation_frequency = 250;
 
         // Tile size (for collisions check)
         this.tile_size = 64;
