@@ -1,0 +1,35 @@
+Teleports: teleport from level 1 to level 2
+Sprites: fix all sprite objects' size
+UX/UI
+Shooting: 
+    Bullet emmiting
+    Bullet movement
+    Bullet wall collision
+    Reloading:
+        Mechanics
+        Animation
+Enemies:
+    Enemy structure, stats
+    Spawning
+    Movement manager
+    Player stalking according to whatever condition (A*)
+    Aggression - shooting at Player
+    Bullet colliding:
+        Player
+        Enemy
+    Death condition:
+        For Enemy
+        For Player
+    Set-up boss
+Endgame UI/UX:
+    Game over screen
+    Finish screen
+    Saving data in leaderboards table
+Audio manager:
+    Find sounds
+    Running
+    Shooting
+    Enemy Death
+    Player Death
+    Boss fight 'ambient'
+CW Paper
