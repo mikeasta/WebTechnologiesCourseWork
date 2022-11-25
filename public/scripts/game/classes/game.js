@@ -34,7 +34,14 @@ export class Game {
 
         // Offset 
         this.global_offset = {
-            "1" : { x: 750, y: 400}
+            "1" : { x: 750, y: 400},
+            "2" : { x: 750, y: 400}
+        }
+
+        // Start point
+        this.start_coordinates = {
+            "1": { x: 0, y: 0 },
+            "2": { x: 150, y: 2600 }
         }
     }
 
@@ -48,7 +55,11 @@ export class Game {
         this.started = true;
 
         // Game managers setup
-        this.player        = new Player(this);
+        this.player = new Player(
+            this, 
+            this.start_coordinates[this.level].x,
+            this.start_coordinates[this.level].y,
+        );
         this.render_engine = new Render(this);
         this.controller    = new Controller();
         this.boundary      = new BoundaryEngine(this);
@@ -118,5 +129,12 @@ export class Game {
         if (this.finished) {
             
         }
+    }
+
+    // Switch to the special level
+    switch_to_level = (level_number) => {
+        this.level = level_number;
+        this.player.x = this.start_coordinates[this.level].x;
+        this.player.y = this.start_coordinates[this.level].y;
     }
 }

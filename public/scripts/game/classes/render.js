@@ -27,16 +27,12 @@ export class Render {
         // Game object
         this.game = game;
 
-        // Level parameters
-        this.level_x = 0;
-        this.level_y = 0;
-
         // Player centering parameters
         this.player_center_x = 750;
         this.player_center_y = 400;
 
         // * BOUNDARIES
-        this.draw_boundaries =false;
+        this.draw_boundaries = true;
 
         // *CANVAS SETUP
         // Prepare canvas elements
@@ -88,13 +84,15 @@ export class Render {
         this.player_image.src = this.game.player.direction === "right" ? animation.right : animation.left;
 
 
-        // Draw boundaries (test)
+        // Draw boundaries (test) and teleports
         if (this.draw_boundaries) {
+            // Collisions
             let boundaries = [];
             switch (this.game.level) {
                 case 1: boundaries = this.game.boundary.level_1_boundaries; break;
                 case 2: boundaries = this.game.boundary.level_2_boundaries; break;
             }
+
 
             boundaries.forEach(
                 boundary => boundary.draw(
@@ -103,6 +101,29 @@ export class Render {
                     this.game.player.y
                 )
             );
+
+            // Teleports
+            let teleports = [];
+            switch (this.game.level) {
+                case 1: teleports  = this.game.boundary.level_1_teleports; break;
+            }
+
+            teleports.forEach(
+                teleport => teleport.draw(
+                    this.c, 
+                    this.game.player.x,
+                    this.game.player.y
+                )
+            );
+
+            // Player hitbox
+            this.c.fillStyle = 'yellow';
+            this.c.fillRect(
+                this.player_center_x, 
+                this.player_center_y,
+                this.player_image.width / animation.frames,
+                this.player_image.height,
+            )
         }
             
 
@@ -118,6 +139,8 @@ export class Render {
             this.player_image.width / animation.frames,
             this.player_image.height,
         );
+
+        
     }
 }
 

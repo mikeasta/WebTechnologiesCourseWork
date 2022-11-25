@@ -1,7 +1,7 @@
 import { MovementEngine } from "./movement_engine.js";
 
 export class Player {
-    constructor(game) {
+    constructor(game, x, y) {
         // Game
         this.game = game;
 
@@ -24,8 +24,8 @@ export class Player {
         this.perks = [];
 
         // Player position
-        this.x = 0;
-        this.y = 0;
+        this.x = x;
+        this.y = y;
 
         // Player physics params 
         this.velocity_x              = 0;
