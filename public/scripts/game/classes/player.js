@@ -56,6 +56,9 @@ export class Player {
         this.animation_state = 0;
         this.state           = 'shoot';
 
+        // Rotate player
+        this.direction  = shoot_x < this.game.global_offset.x ? "left" : "right";
+
         // Create bullet
         // ...
     }

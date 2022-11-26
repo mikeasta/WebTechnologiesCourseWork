@@ -66,7 +66,7 @@ export class Controller {
             if (game.gameover || game.finished) return;
 
             // Mouse click - player shoot
-            this.shoot(game.player, {x: 0, y: 0})
+            this.shoot(game.player, {x: e.x, y: e.y})
         })
 
         // On button click
