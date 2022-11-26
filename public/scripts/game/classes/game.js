@@ -33,10 +33,7 @@ export class Game {
         this.tile_size = 64;
 
         // Offset 
-        this.global_offset = {
-            "1" : { x: 750, y: 400},
-            "2" : { x: 750, y: 400}
-        }
+        this.global_offset = { x: 750, y: 400 }
 
         // Start point
         this.start_coordinates = {
@@ -44,6 +41,7 @@ export class Game {
             "2": { x: 150, y: 2600 }
         }
     }
+
 
     // Game start func
     start = () => {
@@ -71,6 +69,7 @@ export class Game {
         this.loop();
     }
 
+
     // Starting game loops
     loop = () => {
         // Define loop interval
@@ -86,16 +85,19 @@ export class Game {
         this.auto_player_forward_animation = setInterval(this.player.forward_animation, this.animation_frequency)
     }
 
+
     // Move player
     move_player = () => {
         this.player.move();
         this.player.resist();
     }
 
+
     // UI timer 
     clock_tick = () => {
         this.clock.innerHTML = `Score: ${this.get_current_timer()}`
     }
+
 
     // Get current score (timer)
     get_current_timer = () => {
@@ -111,6 +113,7 @@ export class Game {
 
         return `${diffInMin}:${diffInSec}`
     }
+
 
     // Ending of game
     finish = () => {
@@ -131,6 +134,7 @@ export class Game {
         }
     }
 
+    
     // Switch to the special level
     switch_to_level = (level_number) => {
         this.level = level_number;

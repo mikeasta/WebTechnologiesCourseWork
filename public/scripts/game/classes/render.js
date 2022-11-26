@@ -15,21 +15,14 @@ import {
     levels
 } from "../data/render_paths.js"
 
-class Sprite {
-    constructor(image_url) {
-        this.image = "";
-        this.image_url = image_url;
-    }
-}
-
 export class Render {
     constructor (game) {
         // Game object
         this.game = game;
 
         // Player centering parameters
-        this.player_center_x = 750;
-        this.player_center_y = 400;
+        this.player_center_x = game.global_offset.x;
+        this.player_center_y = game.global_offset.y;
 
         // * BOUNDARIES
         this.need_to_draw_boundaries = true;
@@ -58,21 +51,27 @@ export class Render {
         this.image_level_2.src = levels.image_paths[1];
 
         // ? PLayer
+        // Current player image
         this.player_image = undefined;
         this.animation    = undefined;
 
+        // Idle sprite
         this.player_image_idle      = new Image();
         this.player_image_idle.src  = playerIdle.right;
 
+        // Run sprite
         this.player_image_run       = new Image();
         this.player_image_run.src   = playerRun.right;
 
+        // Shoot sprite
         this.player_image_shoot     = new Image();
         this.player_image_shoot.src = playerShoot.right;
 
+        // Death sprite
         this.player_image_death     = new Image();
         this.player_image_death.src = playerDeath.right;
     }
+
 
     // Define player animation
     define_player_animation = () => {
@@ -97,6 +96,7 @@ export class Render {
         }
     }
 
+
     // Draw boundaries
     draw_boundaries = () => {
         // Collisions
@@ -106,6 +106,7 @@ export class Render {
             case 2: boundaries = this.game.boundary.level_2_boundaries; break;
         }
 
+        // Draw all boundaries (walls)
         boundaries.forEach(
             boundary => boundary.draw(
                 this.c, 
@@ -114,12 +115,14 @@ export class Render {
             )
         );
 
+
         // Teleports
         let teleports = [];
         switch (this.game.level) {
             case 1: teleports  = this.game.boundary.level_1_teleports; break;
         }
 
+        // Draw all teleports
         teleports.forEach(
             teleport => teleport.draw(
                 this.c, 
@@ -138,6 +141,7 @@ export class Render {
         )
     }
 
+
     // Draw player
     draw_player = async () => {
         // Check player character direction
@@ -148,8 +152,7 @@ export class Render {
         // Draw player
         await this.c.drawImage(
             this.player_image, 
-            this.player_image.width / this.animation.frames 
-                * (this.game.player.animation_state % this.animation.frames),
+            this.player_image.width / this.animation.frames * (this.game.player.animation_state % this.animation.frames),
             0,
             this.player_image.width / this.animation.frames,
             this.player_image.height,
@@ -183,6 +186,7 @@ export class Render {
         this.c.clearRect(0, 0, this.canvas.width, this.canvas.height)
     }
 
+    
     // Draw all gameplay components 
     render = async () => {
         // Clear canvas 

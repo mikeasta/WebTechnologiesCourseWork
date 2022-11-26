@@ -1,5 +1,8 @@
 export class Controller {
     constructor() {
+        // Pressed shows if current button pressed
+        // Perform is a function that need to be performed
+        // if key is pressed
         this.controller_keys = {
             "KeyA": { 
                 pressed: false, 
@@ -20,33 +23,41 @@ export class Controller {
         }
     }
 
+
+    // Move up event
     moveUp = entity => {
-        // Move up event
         entity.speed_up(0, -entity.force_acceleration);
     }
 
+
+    // Move down event
     moveDown = entity => {
-        // Move down event
         entity.speed_up(0, entity.force_acceleration);
     }
 
+
+    // Move left event
     moveLeft = entity => {
-        // Move left event
         entity.speed_up(-entity.force_acceleration, 0);
-        entity.direction = "left"
+        if (entity.state != "shoot")
+            entity.direction = "left"
     }
 
+
+    // Move right event
     moveRight = entity => {
-        // Move right event
         entity.speed_up(entity.force_acceleration, 0);
-        entity.direction = "right"
+        if (entity.state != "shoot")
+            entity.direction = "right"
     }
+
 
     // Shoot
-    shoot = entity => {
-        entity.shoot()
+    shoot = (entity, coords) => {
+        entity.shoot(coords.x, coords.y)
     }
 
+    
     // Setting up keyboard event listeners
     setupKeyboardListener = game => {
         // On mouse click
@@ -54,6 +65,7 @@ export class Controller {
             // Check if game is over
             if (game.gameover || game.finished) return;
 
+            // Mouse click - player shoot
             this.shoot(game.player)
         })
 
@@ -99,7 +111,7 @@ export class Controller {
 
         // Interval for automatic key pressing
         const keyCheck = setInterval(() => {
-            // Check if game is over
+            // Check if game is over to stop key check
             if (game.gameover || game.finished) clearInterval(keyCheck);
 
             // Perform all buttons

@@ -42,20 +42,24 @@ export class Player {
         this.movement_engine = new MovementEngine(game);
     }
 
+
     // Changes player position according to his velocity
     // Performs each 0.1 sec in Game class.
     move = () => {
         this.movement_engine.move(this)
     }
 
+
     // Perform a shoot
-    shoot = () => {
+    shoot = (shoot_x, shoot_y) => {
         // Start shoot animation
         this.animation_state = 0;
         this.state           = 'shoot';
 
         // Create bullet
+        // ...
     }
+
 
     // Increase animation step
     forward_animation = () => {
@@ -68,6 +72,7 @@ export class Player {
         }
     }
 
+    
     // Adds gotten acceleration to player speed
     speed_up = (accel_x, accel_y) => {
         this.movement_engine.accelerate(this, accel_x, accel_y);
