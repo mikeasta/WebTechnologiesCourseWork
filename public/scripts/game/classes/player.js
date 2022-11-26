@@ -67,7 +67,7 @@ export class Player {
         // Calc angle
         const angle = tilt_angle(
             this.game.global_offset.x + 160,
-            this.game.global_offset.y + 90,
+            this.game.global_offset.y,
             shoot_x,
             shoot_y
         )
