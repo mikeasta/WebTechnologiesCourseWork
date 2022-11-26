@@ -1,4 +1,10 @@
 // * Player
+// Player health bar
+export const playerHealthBar = {
+    src: "assets/ui/player_health_bar.png",
+    frames: 10
+}
+
 // Player idle images
 export const playerIdle = {
     left: "assets/entities/player/idle_left.png",

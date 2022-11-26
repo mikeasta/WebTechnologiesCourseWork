@@ -18,6 +18,10 @@
     border: 1px solid #fff;
 }
 
+#playground:hover {
+    cursor: url("../assets/ui/cursor.png"), pointer;
+}
+
 #to_home {
     border:none;
     background: none;
@@ -36,10 +40,13 @@
     left: 200px;
     width: 600px;
     justify-content: space-between;
+    background-color: #94b0c26c;
+    padding: 10px 20px;
 }
 
 #gameplay_info * {
     font-size: 18px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 /* #gameplay_stats {

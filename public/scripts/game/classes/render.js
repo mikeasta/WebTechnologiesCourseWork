@@ -1,5 +1,6 @@
 // * ASSETS PATH IMPORTS
 import {
+    playerHealthBar,
     playerIdle,
     playerRun,
     playerShoot,
@@ -15,6 +16,7 @@ import {
     levels
 } from "../data/render_paths.js"
 
+
 export class Render {
     constructor (game) {
         // Game object
@@ -25,7 +27,7 @@ export class Render {
         this.player_center_y = game.global_offset.y;
 
         // * BOUNDARIES
-        this.need_to_draw_boundaries = true;
+        this.need_to_draw_boundaries = false;
 
         // *CANVAS SETUP
         // Prepare canvas elements
@@ -70,6 +72,10 @@ export class Render {
         // Death sprite
         this.player_image_death     = new Image();
         this.player_image_death.src = playerDeath.right;
+
+        // Player health bar 
+        this.player_image_health_bar     = new Image();
+        this.player_image_health_bar.src = playerHealthBar.src;
     }
 
 
@@ -187,6 +193,27 @@ export class Render {
     }
 
     
+    // Draw player health bar
+    draw_player_health_bar = async () => {
+
+        // Draw health par
+        await this.c.drawImage(
+            this.player_image_health_bar, 
+            this.player_image_health_bar.width / playerHealthBar.frames * (
+                Math.round(this.game.player.health / playerHealthBar.frames) - 1 < 0 ? 
+                    0 : Math.round(this.game.player.health / playerHealthBar.frames) - 1
+            ),
+            0,
+            this.player_image_health_bar.width / playerHealthBar.frames,
+            this.player_image_health_bar.height,
+            this.player_center_x, 
+            this.player_center_y - this.player_image_health_bar.height,
+            this.player_image_health_bar.width / playerHealthBar.frames,
+            this.player_image_health_bar.height,
+        );
+
+    }
+
     // Draw all gameplay components 
     render = async () => {
         // Clear canvas 
@@ -204,6 +231,9 @@ export class Render {
 
         // Draw player
         await this.draw_player();
+
+        // Draw player health bar
+        await this.draw_player_health_bar()
     }
 }
 

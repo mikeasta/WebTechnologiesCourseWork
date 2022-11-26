@@ -137,8 +137,15 @@ export class Game {
     
     // Switch to the special level
     switch_to_level = (level_number) => {
-        this.level = level_number;
+        // Change level parameter
+        this.level    = level_number;
+
+        // Change player coords to start of the next level
         this.player.x = this.start_coordinates[this.level].x;
         this.player.y = this.start_coordinates[this.level].y;
+
+        // Change interface level flag
+        const level_html_el = document.getElementById("playerLevel");
+        level_html_el.innerHTML = `Level: ${this.level}`;
     }
 }
