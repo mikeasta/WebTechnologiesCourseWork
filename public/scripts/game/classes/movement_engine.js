@@ -22,8 +22,12 @@ export class MovementEngine{
 
 
         if (collision) {
-            entity.velocity_x = entity.velocity_x > 0 ? entity.velocity_x -1: 0;
-            entity.velocity_y = entity.velocity_x > 0 ? entity.velocity_x -1: 0;
+            entity.velocity_x = 
+                entity.velocity_x > 0 ? entity.velocity_x -1: 
+                    entity.velocity_x < 0 ? entity.velocity_x + 1: 0;
+            entity.velocity_y = 
+                entity.velocity_y > 0 ? entity.velocity_y -1: 
+                    entity.velocity_y < 0 ? entity.velocity_y + 1: 0;
             this.move(entity);
         } else {
             // Move entity

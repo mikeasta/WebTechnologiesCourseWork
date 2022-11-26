@@ -32,7 +32,7 @@ export class Render {
         this.player_center_y = 400;
 
         // * BOUNDARIES
-        this.draw_boundaries = true;
+        this.need_to_draw_boundaries = true;
 
         // *CANVAS SETUP
         // Prepare canvas elements
@@ -45,6 +45,10 @@ export class Render {
 
 
         // * IMAGES SETUP
+        // ? LEVELS
+        // Var for saving current level image
+        this.level_image = undefined;
+
         // Prepare maps' images for render
         this.image_level_1 = new Image();
         this.image_level_2 = new Image();
@@ -53,94 +57,149 @@ export class Render {
         this.image_level_1.src = levels.image_paths[0];
         this.image_level_2.src = levels.image_paths[1];
 
-        // Prepare player
-        this.player_image     = new Image();
-        this.player_image.src = playerIdle.right;
+        // ? PLayer
+        this.player_image = undefined;
+        this.animation    = undefined;
+
+        this.player_image_idle      = new Image();
+        this.player_image_idle.src  = playerIdle.right;
+
+        this.player_image_run       = new Image();
+        this.player_image_run.src   = playerRun.right;
+
+        this.player_image_shoot     = new Image();
+        this.player_image_shoot.src = playerShoot.right;
+
+        this.player_image_death     = new Image();
+        this.player_image_death.src = playerDeath.right;
     }
 
-    render = async () => {
-        // Clear canvas 
-        this.c.clearRect(0, 0, this.canvas.width, this.canvas.height)
-
-
-        // Draw level
-        await this.c.drawImage(
-            this.game.level === 1 ? this.image_level_1: this.image_level_2,
-            -this.game.player.x,
-            -this.game.player.y 
-        );
-        
-
+    // Define player animation
+    define_player_animation = () => {
         // Define player animation
-        let animation;
         switch (this.game.player.state) {
-            case "idle":  animation = playerIdle; break;
-            case "run" :  animation = playerRun; break;
-            case "shoot": animation = playerShoot; break;
+            case "idle":  
+                this.animation    = playerIdle; 
+                this.player_image = this.player_image_idle;  
+                break;
+            case "run" :  
+                this.animation    = playerRun;   
+                this.player_image = this.player_image_run;  
+                break;
+            case "shoot": 
+                this.animation    = playerShoot; 
+                this.player_image = this.player_image_shoot; 
+                break;
+            case "death": 
+                this.animation = playerDeath; 
+                this.player_image = this.player_image_death;
+                break;
+        }
+    }
+
+    // Draw boundaries
+    draw_boundaries = () => {
+        // Collisions
+        let boundaries = [];
+        switch (this.game.level) {
+            case 1: boundaries = this.game.boundary.level_1_boundaries; break;
+            case 2: boundaries = this.game.boundary.level_2_boundaries; break;
         }
 
-
-        // Check player character direction
-        this.player_image.src = this.game.player.direction === "right" ? animation.right : animation.left;
-
-
-        // Draw boundaries (test) and teleports
-        if (this.draw_boundaries) {
-            // Collisions
-            let boundaries = [];
-            switch (this.game.level) {
-                case 1: boundaries = this.game.boundary.level_1_boundaries; break;
-                case 2: boundaries = this.game.boundary.level_2_boundaries; break;
-            }
-
-
-            boundaries.forEach(
-                boundary => boundary.draw(
-                    this.c, 
-                    this.game.player.x,
-                    this.game.player.y
-                )
-            );
-
-            // Teleports
-            let teleports = [];
-            switch (this.game.level) {
-                case 1: teleports  = this.game.boundary.level_1_teleports; break;
-            }
-
-            teleports.forEach(
-                teleport => teleport.draw(
-                    this.c, 
-                    this.game.player.x,
-                    this.game.player.y
-                )
-            );
-
-            // Player hitbox
-            this.c.fillStyle = 'yellow';
-            this.c.fillRect(
-                this.player_center_x, 
-                this.player_center_y,
-                this.player_image.width / animation.frames,
-                this.player_image.height,
+        boundaries.forEach(
+            boundary => boundary.draw(
+                this.c, 
+                this.game.player.x,
+                this.game.player.y
             )
+        );
+
+        // Teleports
+        let teleports = [];
+        switch (this.game.level) {
+            case 1: teleports  = this.game.boundary.level_1_teleports; break;
         }
-            
+
+        teleports.forEach(
+            teleport => teleport.draw(
+                this.c, 
+                this.game.player.x,
+                this.game.player.y
+            )
+        );
+
+        // Player hitbox
+        this.c.fillStyle = 'yellow';
+        this.c.fillRect(
+            this.player_center_x, 
+            this.player_center_y,
+            this.player_image.width / this.animation.frames,
+            this.player_image.height,
+        )
+    }
+
+    // Draw player
+    draw_player = async () => {
+        // Check player character direction
+        this.player_image.src = 
+            this.game.player.direction === "right" ? 
+                this.animation.right : this.animation.left;
 
         // Draw player
         await this.c.drawImage(
             this.player_image, 
-            this.player_image.width / animation.frames * (this.game.player.animation_state % animation.frames),
+            this.player_image.width / this.animation.frames 
+                * (this.game.player.animation_state % this.animation.frames),
             0,
-            this.player_image.width / animation.frames,
+            this.player_image.width / this.animation.frames,
             this.player_image.height,
             this.player_center_x, 
             this.player_center_y,
-            this.player_image.width / animation.frames,
+            this.player_image.width / this.animation.frames,
             this.player_image.height,
         );
+    }
 
+
+    // Draw level
+    draw_level = async () => {
+        // Check current level
+        switch(this.game.level) {
+            case 1: this.level_image = this.image_level_1; break;
+            case 2: this.level_image = this.image_level_2; break;
+        }
+
+        // Draw level
+        await this.c.drawImage(
+            this.level_image,
+            -this.game.player.x,
+            -this.game.player.y 
+        );
+    }
+
+
+    // Clear canvas
+    clear_canvas = () => {
+        this.c.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    }
+
+    // Draw all gameplay components 
+    render = async () => {
+        // Clear canvas 
+        this.clear_canvas();
+
+        // Define player animation
+        this.define_player_animation();
         
+        // Draw level
+        await this.draw_level()
+        
+        // Draw boundaries (test) and teleports
+        if (this.need_to_draw_boundaries) 
+            this.draw_boundaries();
+
+        // Draw player
+        await this.draw_player();
     }
 }
 
