@@ -1,6 +1,8 @@
 ✔ Teleports: teleport from level 1 to level 2 @done(22-11-25 21:30)
 ✔ Fix collision @done(22-11-25 21:33)
-Sprites: fix all sprite objects' size
+Sprites: 
+    ✔ Fix all sprite objects' size @done(22-11-26 13:27)
+    Load all sprites while creating Render object (maybe i should to create another class)
 UX/UI
 Shooting: 
     Bullet emmiting
