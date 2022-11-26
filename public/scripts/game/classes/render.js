@@ -13,7 +13,9 @@ import {
     bossRun,
     bossShoot,
     bossDeath,
-    levels
+    levels,
+    playerBullet,
+    enemyBullet
 } from "../data/render_paths.js"
 
 
@@ -51,6 +53,13 @@ export class Render {
         // Set paths 
         this.image_level_1.src = levels.image_paths[0];
         this.image_level_2.src = levels.image_paths[1];
+
+        // ? Bullets
+        this.player_bullet     = new Image();
+        this.player_bullet.src = playerBullet.src;
+
+        this.enemy_bullet     = new Image();
+        this.enemy_bullet.src = enemyBullet.src;
 
         // ? PLayer
         // Current player image
@@ -148,6 +157,17 @@ export class Render {
     }
 
 
+    // Draw bullets
+    draw_bullets = async () => {
+        this.game.bullet_engine.bullets.forEach( bullet => {
+            this.c.drawImage(
+                bullet.source === "player" ? this.player_bullet: this.enemy_bullet,
+                bullet.x - this.game.player.x,
+                bullet.y - this.game.player.y,
+            );
+        })
+    }
+
     // Draw player
     draw_player = async () => {
         // Check player character direction
@@ -233,7 +253,10 @@ export class Render {
         await this.draw_player();
 
         // Draw player health bar
-        await this.draw_player_health_bar()
+        await this.draw_player_health_bar();
+
+        // Draw bullets
+        await this.draw_bullets();
     }
 }
 

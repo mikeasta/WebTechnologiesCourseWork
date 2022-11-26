@@ -1,4 +1,5 @@
 import { MovementEngine } from "./movement_engine.js";
+import { tilt_angle } from "../utils/tilt_angle.js"
 
 export class Player {
     constructor(game, x, y) {
@@ -59,8 +60,20 @@ export class Player {
         // Rotate player
         this.direction  = shoot_x < this.game.global_offset.x ? "left" : "right";
 
+        // Define source coordinates
+        const source_x = this.x + this.game.global_offset.x + this.width / 2;
+        const source_y = this.y + this.game.global_offset.y + this.height / 2;
+
+        // Calc angle
+        const angle = tilt_angle(
+            this.game.global_offset.x + 160,
+            this.game.global_offset.y + 90,
+            shoot_x,
+            shoot_y
+        )
+
         // Create bullet
-        // ...
+        this.game.bullet_engine.create_bullet(source_x, source_y, angle)
     }
 
 

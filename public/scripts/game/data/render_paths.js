@@ -110,3 +110,11 @@ export const levels = {
     image_paths: ["assets/map/level_1.png", "assets/map/level_2.png"],
     tile_size: 64
 }
+
+// * Bullets
+export const playerBullet = {
+    src: "assets/entities/bullets/player_bullet.png"
+}
+export const enemyBullet = {
+    src: "assets/entities/bullets/enemy_bullet.png"
+}
