@@ -3,14 +3,11 @@
 ✔ Sprites: @done(22-11-26 14:14)
     ✔ Fix all sprite objects' size @done(22-11-26 13:27)
     ✔ Load all sprites while creating Render object (maybe i should to create another class) @done(22-11-26 14:14)
-UX/UI
+✔ UX/UI @done(22-11-26 14:56)
 Shooting: 
     Bullet emmiting
     Bullet movement
     Bullet wall collision
-    Reloading:
-        Mechanics
-        Animation
 Enemies:
     Enemy structure, stats
     Spawning
