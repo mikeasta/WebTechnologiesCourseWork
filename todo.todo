@@ -20,7 +20,7 @@ Enemies:
         ✔ Damage enemy @done(22-11-27 22:54)
     Death condition:
         For Player
-        For Enemy
+        ✔ For Enemy @done(22-11-27 23:16)
     Set-up boss
 Endgame UI/UX:
     Game over screen
