@@ -10,7 +10,7 @@
     ✔ Bullet wall collision @done(22-11-27 16:11)
     ✔ Reload time delay @done(22-11-27 16:39)
 Enemies:
-    Enemy structure, stats
+    ✔ Enemy structure, stats @done(22-11-27 18:24)
     Spawning
     Movement manager
     Player stalking according to whatever condition (A*)

@@ -6,6 +6,9 @@ export class Player {
         // Game
         this.game = game;
 
+        // Ally
+        this.player_ally = true;
+
         // Direction of player model: "left" or "right"
         this.direction = "right";
 
@@ -15,14 +18,11 @@ export class Player {
         // Animation tick
         this.animation_state = 0;
 
-        // Player start health (in DMG)
+        // Player health (in DMG)
         this.health = 100;
 
-        // Player start damage (in DMG)
+        // Player damage (in DMG)
         this.damage = 10;
-
-        // Player start perks
-        this.perks = [];
 
         // Player position
         this.x = x;
