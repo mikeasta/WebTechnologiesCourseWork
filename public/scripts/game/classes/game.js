@@ -80,6 +80,9 @@ export class Game {
         // Define player move loop
         this.auto_player_move = setInterval(this.move_player, this.render_frequency)
 
+        // Define bullet move loop
+        this.auto_bullets_move = setInterval(this.move_bullets, this.render_frequency)
+
         // Clock update interval
         this.auto_clock_loop = setInterval(this.clock_tick, 1000);
 
@@ -94,6 +97,11 @@ export class Game {
         this.player.resist();
     }
 
+    
+    // Move bullets 
+    move_bullets = () => {
+        this.bullet_engine.move_bullets();
+    }
 
     // UI timer 
     clock_tick = () => {

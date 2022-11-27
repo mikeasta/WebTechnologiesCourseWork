@@ -118,7 +118,7 @@ export class BoundaryEngine {
         body_width, 
         body_height, 
         block_tile, 
-        offset
+        offset 
     ) => {
         return (
             body_x + body_width >= block_tile.x - offset.x &&
@@ -129,7 +129,13 @@ export class BoundaryEngine {
     }
 
 
-    collision_with_wall = (body_x, body_y, body_width, body_height) => {
+    collision_with_wall = (
+        body_x, 
+        body_y, 
+        body_width, 
+        body_height, 
+        offset = {x: 0, y: 0}) => {
+            
         // * WALLS
         // Choose correct boundary object (for current level)
         let boundary = [];
@@ -138,8 +144,6 @@ export class BoundaryEngine {
             case 2: boundary = this.level_2_boundaries; break;
         }
 
-        // Define offset
-        const offset  = this.game.global_offset;
 
         // Check boundaries: if body collides with boundary, return true
         let collision = false

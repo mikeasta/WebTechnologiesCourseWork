@@ -6,8 +6,9 @@
 ✔ UX/UI @done(22-11-26 14:56)
 Shooting: 
     ✔ Bullet emmiting @done(22-11-26 21:39)
-    Bullet movement
-    Bullet wall collision
+    ✔ Bullet movement @done(22-11-27 16:11)
+    ✔ Bullet wall collision @done(22-11-27 16:11)
+    Reload time delay
 Enemies:
     Enemy structure, stats
     Spawning

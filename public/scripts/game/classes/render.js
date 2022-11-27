@@ -29,7 +29,7 @@ export class Render {
         this.player_center_y = game.global_offset.y;
 
         // * BOUNDARIES
-        this.need_to_draw_boundaries = true;
+        this.need_to_draw_boundaries = false;
 
         // *CANVAS SETUP
         // Prepare canvas elements

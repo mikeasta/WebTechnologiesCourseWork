@@ -15,7 +15,8 @@ export class MovementEngine{
                     entity.x + entity.velocity_x,
                     entity.y + entity.velocity_y,
                     entity.width,
-                    entity.height
+                    entity.height,
+                    this.game.global_offset
                 )
 
         // If collision take place
@@ -32,6 +33,27 @@ export class MovementEngine{
             // If there are no collision, move entity
             entity.x += entity.velocity_x;
             entity.y += entity.velocity_y;
+        }
+    }
+
+    move_bullet = (bullet, bullet_engine) => {
+        // Check if bullet can move in direction
+        const collision = 
+            this.game.boundary  
+                .collision_with_wall(
+                    bullet.x + bullet.velocity_x,
+                    bullet.y + bullet.velocity_y,
+                    bullet.width,
+                    bullet.height
+                )
+        
+        if (collision) {
+            // Delete bullet
+            bullet_engine.bullets = bullet_engine.bullets.filter(b => b.id != bullet.id);
+        } else {
+            // If there are no collision, move bullet
+            bullet.x += bullet.velocity_x;
+            bullet.y += bullet.velocity_y;
         }
     }
 

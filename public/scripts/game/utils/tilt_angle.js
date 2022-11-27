@@ -6,11 +6,6 @@ export const tilt_angle  = (x_1, y_1, x_2, y_2) => {
     let x = x_2 - x_1;
     let y = y_2 - y_1;
 
-    // // Normalize to range [0, 1]
-    // const max = Math.abs(x) > Math.abs(y) ? Math.abs(x) : Math.abs(y);
-    // x /= max;
-    // y /= max;
-
     // Find angle
     // Check standart cases
     if ((x === 0) && (y === 0)) return 0;

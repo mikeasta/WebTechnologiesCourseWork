@@ -72,15 +72,13 @@ export class Player {
             shoot_y
         )
 
-        console.log(this.game.global_offset.x + 160,
-            this.game.global_offset.y,
-            shoot_x,
-            shoot_y)
-            
-        console.log(angle);
-
         // Create bullet
-        this.game.bullet_engine.create_bullet(source_x, source_y, angle)
+        this.game.bullet_engine.create_bullet(
+            source_x, 
+            source_y, 
+            angle,
+            this.velocity_x,
+            this.velocity_y)
     }
 
 
