@@ -3,6 +3,7 @@ import { Controller } from "./controller.js"
 import { Render } from "./render.js"
 import { BoundaryEngine } from "./boundary_engine.js";
 import { BulletEngine } from "./bullet_engine.js";
+import { EnemyManager } from "./enemy_manager.js";
 
 export class Game {
     constructor () {
@@ -66,6 +67,7 @@ export class Game {
         this.controller    = new Controller();
         this.boundary      = new BoundaryEngine(this);
         this.bullet_engine = new BulletEngine(this)
+        this.enemy_manager = new EnemyManager(this);
 
         // Keyboard listener setup
         this.controller.setupKeyboardListener(this);
@@ -78,22 +80,43 @@ export class Game {
     // Starting game loops
     loop = () => {
         // Define loop interval
-        this.auto_render_loop = setInterval(this.render_engine.render, this.render_frequency);
+        this.auto_render_loop = setInterval(
+            this.render_engine.render, 
+            this.render_frequency
+        );
 
         // Define player move loop
-        this.auto_player_move = setInterval(this.move_player, this.render_frequency)
+        this.auto_player_move = setInterval(
+            this.move_player, 
+            this.render_frequency
+        );
 
         // Define bullet move loop
-        this.auto_bullets_move = setInterval(this.bullet_engine.move_bullets, this.render_frequency)
+        this.auto_bullets_move = setInterval(
+            this.bullet_engine.move_bullets, 
+            this.render_frequency
+        );
 
         // Define player reload stage loop
-        this.auto_player_reload = setInterval(this.player_reload, this.player_reload_frequency)
+        this.auto_player_reload = setInterval(
+            this.player_reload, 
+            this.player_reload_frequency
+        );
 
         // Clock update interval
         this.auto_clock_loop = setInterval(this.clock_tick, 1000);
 
         // Set player animation
-        this.auto_player_forward_animation = setInterval(this.player.forward_animation, this.animation_frequency)
+        this.auto_player_forward_animation = setInterval(
+            this.player.forward_animation, 
+            this.animation_frequency
+        );
+    
+        // Set enemy animation
+        this.auto_enemy_forward_animation = setInterval(
+            this.enemy_manager.all_forward_animation, 
+            this.animation_frequency
+        );
     }
 
 
@@ -107,8 +130,6 @@ export class Game {
     player_reload = () => {
         if (this.player.on_reload)
             this.player.reload_stage++;
-
-        console.log(this.player.reload_stage);
 
         if (this.player.reload_stage > 6) {
             this.player.on_reload    = false;
@@ -170,5 +191,8 @@ export class Game {
         // Change interface level flag
         const level_html_el = document.getElementById("playerLevel");
         level_html_el.innerHTML = `Level: ${this.level}`;
+
+        // Change enemies set
+        this.enemy_manager.update_enemies();
     }
 }

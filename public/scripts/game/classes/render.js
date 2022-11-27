@@ -30,7 +30,7 @@ export class Render {
         this.player_center_y = game.global_offset.y;
 
         // * BOUNDARIES
-        this.need_to_draw_boundaries = false;
+        this.need_to_draw_boundaries = true;
 
         // *CANVAS SETUP
         // Prepare canvas elements
@@ -62,7 +62,7 @@ export class Render {
         this.enemy_bullet     = new Image();
         this.enemy_bullet.src = enemyBullet.src;
 
-        // ? PLayer
+        // ? Player
         // Current player image
         this.player_image = undefined;
         this.animation    = undefined;
@@ -90,6 +90,27 @@ export class Render {
         // Player reload indicator
         this.player_image_reload_indicator     = new Image();
         this.player_image_reload_indicator.src = reloadIndicator.src;
+    
+        // ? Enemy
+        // Current enemy image
+        this.enemy_image     = undefined;
+        this.enemy_animation = undefined;
+
+        // Idle sprite
+        this.enemy_image_idle      = new Image();
+        this.enemy_image_idle.src  = enemyIdle.right;
+
+        // Run sprite
+        this.enemy_image_run       = new Image();
+        this.enemy_image_run.src   = enemyRun.right;
+
+        // Shoot sprite
+        this.enemy_image_shoot     = new Image();
+        this.enemy_image_shoot.src = enemyShoot.right;
+
+        // Death sprite
+        this.enemy_image_death     = new Image();
+        this.enemy_image_death.src = enemyDeath.right;
     }
 
 
@@ -116,6 +137,29 @@ export class Render {
         }
     }
 
+
+    // Define enemy animation
+    define_enemy_animation = enemy => {
+        // Define enemy animation
+        switch (enemy.state) {
+            case "idle":  
+                this.enemy_animation = enemyIdle; 
+                this.enemy_image = this.enemy_image_idle;  
+                break;
+            case "run" :  
+                this.enemy_animation = enemyRun;   
+                this.enemy_image = this.enemy_image_run;  
+                break;
+            case "shoot": 
+                this.enemy_animation = enemyShoot; 
+                this.enemy_image = this.enemy_image_shoot; 
+                break;
+            case "death": 
+                this.enemy_animation = enemyDeath; 
+                this.enemy_image = this.enemy_image_death;
+                break;
+        }
+    }
 
     // Draw boundaries
     draw_boundaries = () => {
@@ -159,32 +203,28 @@ export class Render {
             this.player_image.width / this.animation.frames,
             this.player_image.height,
         )
-
-        // Draw center
-        this.draw_center();
     }
 
 
     // Draw bullets
     draw_bullets = async () => {
         this.game.bullet_engine.bullets.forEach( bullet => {
+            // Draw boundaries
+            if (this.need_to_draw_boundaries) {
+                this.c.fillStyle = "blue";
+                this.c.fillRect(
+                    bullet.x - this.game.player.x,
+                    bullet.y - this.game.player.y,
+                    32, 32
+                )
+            }
+
             this.c.drawImage(
                 bullet.source === "player" ? this.player_bullet: this.enemy_bullet,
                 bullet.x - this.game.player.x,
                 bullet.y - this.game.player.y,
             );
         })
-    }
-
-    // Draw center
-    draw_center = () => {
-        this.c.fillStyle = "orange";
-        this.c.fillRect(
-            this.game.global_offset.x,
-            this.game.global_offset.y,
-            10,
-            10
-        )
     }
 
     // Draw player
@@ -206,6 +246,44 @@ export class Render {
             this.player_image.width / this.animation.frames,
             this.player_image.height,
         );
+    }
+
+
+    // Draw enemies
+    draw_enemies = async () => {
+        const enemies = this.game.enemy_manager.current_enemies;
+        console.log(enemies);
+        enemies.forEach(enemy => {
+            // Boundary
+            if (this.need_to_draw_boundaries) {
+                this.c.fillStyle = "yellow";
+                this.c.fillRect(
+                    enemy.x - this.game.player.x, 
+                    enemy.y - this.game.player.y, 
+                    64, 64);
+            }
+
+            // Define current enemy animation
+            this.define_enemy_animation(enemy)
+
+            // Check enemy character direction
+            this.enemy_image.src = 
+                enemy.direction === "right" ? 
+                    this.enemy_animation.right : this.enemy_animation.left;
+
+            // Draw enemy
+            this.c.drawImage(
+                this.enemy_image, 
+                this.enemy_image.width / this.enemy_animation.frames * (enemy.animation_state % this.enemy_animation.frames),
+                0,
+                this.enemy_image.width / this.enemy_animation.frames,
+                this.enemy_image.height,
+                enemy.x - this.game.player.x, 
+                enemy.y - this.game.player.y, 
+                this.enemy_image.width / this.enemy_animation.frames,
+                this.enemy_image.height,
+            );
+        })
     }
 
 
@@ -292,6 +370,9 @@ export class Render {
 
         // Draw bullets
         await this.draw_bullets();
+
+        // Draw enemies
+        await this.draw_enemies();
     }
 }
 

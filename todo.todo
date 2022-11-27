@@ -11,7 +11,7 @@
     ✔ Reload time delay @done(22-11-27 16:39)
 Enemies:
     ✔ Enemy structure, stats @done(22-11-27 18:24)
-    Spawning
+    ✔ Spawning @done(22-11-27 22:14)
     Movement manager
     Player stalking according to whatever condition (A*)
     Aggression - shooting at Player
