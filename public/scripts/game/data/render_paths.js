@@ -39,7 +39,7 @@ export const playerShoot = {
 export const playerDeath = {
     left: "assets/entities/player/death_left.png",
     right: "assets/entities/player/death_right.png",
-    frames: 4,
+    frames: 7,
     size: 64 // in pixels
 }
 
@@ -78,7 +78,7 @@ export const enemyShoot = {
 export const enemyDeath = {
     left: "assets/entities/enemy/death_left.png",
     right: "assets/entities/enemy/death_right.png",
-    frames: 4,
+    frames: 7,
     size: 64 // in pixels
 }
 

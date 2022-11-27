@@ -65,4 +65,9 @@ export class EnemyManager {
         // Current enemies list
         this.current_enemies = this.choose_current_enemy_list()
     }
+
+    // Kill enemy
+    kill = enemy => {
+        this.current_enemies = this.current_enemies.filter(el => el.id != enemy.id);
+    }
 }

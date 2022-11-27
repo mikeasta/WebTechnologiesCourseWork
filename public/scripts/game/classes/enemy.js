@@ -16,7 +16,7 @@ export class Enemy {
         this.boss = false;
 
         // ID
-        this.id = new Date().getTime();
+        this.id = Math.random().toString(36).slice(2, 15);
 
         // Position
         this.x = spawn_x;
@@ -63,6 +63,10 @@ export class Enemy {
     forward_animation = () => {
         if (this.state === "shoot" && this.animation_state > 2) {
             this.state = "idle";
+        } else if ((this.state == "death") && (this.animation_state > 5)) {
+            this.game.enemy_manager.kill(this);
+            this.state = "idle";
+            this.animation_state = 0;
         } else if (this.animation_state > 6) {
             this.animation_state = 0;
         } else  {
@@ -96,6 +100,7 @@ export class Enemy {
 
     // Die
     die = () => {
-
+        this.state = "death";
+        this.animation_state = 0;
     }
 }
