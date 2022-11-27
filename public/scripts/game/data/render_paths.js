@@ -45,6 +45,11 @@ export const playerDeath = {
 
 
 // * Enemy
+export const enemyHealthBar = {
+    src: "assets/ui/enemy_health_bar.png",
+    frames: 7
+}
+
 // Enemy idle images
 export const enemyIdle = {
     left: "assets/entities/enemy/idle_left.png",

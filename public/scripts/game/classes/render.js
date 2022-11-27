@@ -6,6 +6,7 @@ import {
     playerRun,
     playerShoot,
     playerDeath,
+    enemyHealthBar,
     enemyIdle,
     enemyRun,
     enemyShoot,
@@ -111,6 +112,10 @@ export class Render {
         // Death sprite
         this.enemy_image_death     = new Image();
         this.enemy_image_death.src = enemyDeath.right;
+
+        // Enemy health bar 
+        this.enemy_image_health_bar     = new Image();
+        this.enemy_image_health_bar.src = enemyHealthBar.src;
     }
 
 
@@ -252,7 +257,7 @@ export class Render {
     // Draw enemies
     draw_enemies = async () => {
         const enemies = this.game.enemy_manager.current_enemies;
-        console.log(enemies);
+
         enemies.forEach(enemy => {
             // Boundary
             if (this.need_to_draw_boundaries) {
@@ -270,6 +275,22 @@ export class Render {
             this.enemy_image.src = 
                 enemy.direction === "right" ? 
                     this.enemy_animation.right : this.enemy_animation.left;
+
+            // Draw health par
+            this.c.drawImage(
+                this.enemy_image_health_bar, 
+                this.enemy_image_health_bar.width / enemyHealthBar.frames * (
+                    Math.round(enemy.health / enemyHealthBar.frames) - 1 < 0 ? 
+                        0 : Math.round(enemy.health / enemyHealthBar.frames) - 1
+                ),
+                0,
+                this.enemy_image_health_bar.width / enemyHealthBar.frames,
+                this.enemy_image_health_bar.height,
+                enemy.x - this.game.player.x, 
+                enemy.y - this.game.player.y - this.enemy_image_health_bar.height,
+                this.enemy_image_health_bar.width / enemyHealthBar.frames,
+                this.enemy_image_health_bar.height,
+            );
 
             // Draw enemy
             this.c.drawImage(

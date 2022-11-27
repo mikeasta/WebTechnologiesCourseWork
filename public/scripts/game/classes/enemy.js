@@ -32,7 +32,7 @@ export class Enemy {
         this.animation_state = 0;
 
         // Enemy health (in DMG)
-        this.health = 20;
+        this.health = 50;
 
         // Enemy damage (in DMG)
         this.damage = 10;
