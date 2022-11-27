@@ -22,6 +22,7 @@ class Bullet {
 
         this.width  = 32;
         this.height = 32;
+        this.tile_size = 32;
     }
 
     // Move bullet

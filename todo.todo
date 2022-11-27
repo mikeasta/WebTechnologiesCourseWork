@@ -16,11 +16,11 @@ Enemies:
     Player stalking according to whatever condition (A*)
     Aggression - shooting at Player
     Bullet colliding:
-        Player
-        Enemy
+        Damage player
+        ✔ Damage enemy @done(22-11-27 22:54)
     Death condition:
-        For Enemy
         For Player
+        For Enemy
     Set-up boss
 Endgame UI/UX:
     Game over screen

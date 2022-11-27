@@ -118,7 +118,7 @@ export class BoundaryEngine {
         body_width, 
         body_height, 
         block_tile, 
-        offset 
+        offset = {x: 0, y: 0}
     ) => {
         return (
             body_x + body_width >= block_tile.x - offset.x &&
@@ -128,6 +128,39 @@ export class BoundaryEngine {
         );
     }
 
+
+    bullet_to_entity_collision = bullet => {
+        // Entities list
+        let entities      = []
+        let bullet_damage = 0;
+
+        // Check: if bullet source is player, check collision with enamies.
+        // Else, with player
+        if (bullet.source === "player") {
+            entities = this.game.enemy_manager.current_enemies;
+            bullet_damage = this.game.player.damage;
+        }
+
+        let collision = false
+        for (let entity of entities) {
+            collision = this.check_collision(
+                entity.x, 
+                entity.y, 
+                entity.width, 
+                entity.height, 
+                bullet
+            )
+
+            // If we found collision, we have no 
+            // need to check collision further - entity definately stop.
+            if (collision) {
+                entity.hurt(bullet_damage);
+                break;
+            };
+        }
+
+        return collision;
+    }
 
     collision_with_wall = (
         body_x, 

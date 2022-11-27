@@ -87,4 +87,15 @@ export class Enemy {
     resist = () => {
         this.movement_engine.resist(this)
     }
+
+    // Get damage
+    hurt = damage => {
+        this.health -= damage;
+        if (this.health <= 0) this.die();
+    }
+
+    // Die
+    die = () => {
+
+    }
 }

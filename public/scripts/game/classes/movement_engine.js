@@ -46,6 +46,8 @@ export class MovementEngine{
                     bullet.width,
                     bullet.height
                 )
+            ||
+            this.game.boundary.bullet_to_entity_collision(bullet)  
         
         if (collision) {
             // Delete bullet
