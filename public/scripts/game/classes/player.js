@@ -71,8 +71,8 @@ export class Player {
         this.direction  = shoot_x < this.game.global_offset.x ? "left" : "right";
 
         // Define source coordinates
-        const source_x = this.x + this.game.global_offset.x + this.width / 2;
-        const source_y = this.y + this.game.global_offset.y + this.height / 2;
+        const source_x = this.x + this.game.global_offset.x + this.width / 64;
+        const source_y = this.y + this.game.global_offset.y + this.height / 64;
 
         // Calc angle
         const angle = tilt_angle(
