@@ -7,13 +7,11 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-
-    padding: 0px 50px;
 }
 
 #playground {
     width: 1600px;
-    height: 900px;
+    min-height: 900px;
     box-sizing: border-box;
     border: 1px solid #fff;
 }

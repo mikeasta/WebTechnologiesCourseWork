@@ -29,7 +29,7 @@ export class Render {
         this.player_center_y = game.global_offset.y;
 
         // * BOUNDARIES
-        this.need_to_draw_boundaries = false;
+        this.need_to_draw_boundaries = true;
 
         // *CANVAS SETUP
         // Prepare canvas elements
@@ -154,6 +154,9 @@ export class Render {
             this.player_image.width / this.animation.frames,
             this.player_image.height,
         )
+
+        // Draw center
+        this.draw_center();
     }
 
 
@@ -166,6 +169,17 @@ export class Render {
                 bullet.y - this.game.player.y,
             );
         })
+    }
+
+    // Draw center
+    draw_center = () => {
+        this.c.fillStyle = "orange";
+        this.c.fillRect(
+            this.game.global_offset.x,
+            this.game.global_offset.y,
+            10,
+            10
+        )
     }
 
     // Draw player
