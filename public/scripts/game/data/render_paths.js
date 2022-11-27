@@ -5,6 +5,12 @@ export const playerHealthBar = {
     frames: 10
 }
 
+// Player reload indicator
+export const reloadIndicator = {
+    src: "assets/ui/reload_indicator.png",
+    frames: 7
+}
+
 // Player idle images
 export const playerIdle = {
     left: "assets/entities/player/idle_left.png",
@@ -115,6 +121,7 @@ export const levels = {
 export const playerBullet = {
     src: "assets/entities/bullets/player_bullet.png"
 }
+
 export const enemyBullet = {
     src: "assets/entities/bullets/enemy_bullet.png"
 }

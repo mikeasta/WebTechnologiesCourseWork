@@ -1,6 +1,7 @@
 // * ASSETS PATH IMPORTS
 import {
     playerHealthBar,
+    reloadIndicator,
     playerIdle,
     playerRun,
     playerShoot,
@@ -85,6 +86,10 @@ export class Render {
         // Player health bar 
         this.player_image_health_bar     = new Image();
         this.player_image_health_bar.src = playerHealthBar.src;
+
+        // Player reload indicator
+        this.player_image_reload_indicator     = new Image();
+        this.player_image_reload_indicator.src = reloadIndicator.src;
     }
 
 
@@ -228,7 +233,7 @@ export class Render {
 
     
     // Draw player health bar
-    draw_player_health_bar = async () => {
+    draw_player_indicators = async () => {
 
         // Draw health par
         await this.c.drawImage(
@@ -245,6 +250,22 @@ export class Render {
             this.player_image_health_bar.width / playerHealthBar.frames,
             this.player_image_health_bar.height,
         );
+
+        // Draw reload
+        if (this.game.player.on_reload) {
+            this.c.drawImage(
+                this.player_image_reload_indicator, 
+                this.player_image_reload_indicator.width / reloadIndicator.frames * this.game.player.reload_stage,
+                0,
+                this.player_image_reload_indicator.width / reloadIndicator.frames,
+                this.player_image_reload_indicator.height,
+                this.player_center_x, 
+                this.player_center_y - this.player_image_reload_indicator.height - this.player_image_health_bar.height / 2,
+                this.player_image_reload_indicator.width / reloadIndicator.frames,
+                this.player_image_reload_indicator.height,
+            );
+        }
+        
 
     }
 
@@ -267,7 +288,7 @@ export class Render {
         await this.draw_player();
 
         // Draw player health bar
-        await this.draw_player_health_bar();
+        await this.draw_player_indicators();
 
         // Draw bullets
         await this.draw_bullets();

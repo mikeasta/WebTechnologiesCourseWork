@@ -4,11 +4,11 @@
     ✔ Fix all sprite objects' size @done(22-11-26 13:27)
     ✔ Load all sprites while creating Render object (maybe i should to create another class) @done(22-11-26 14:14)
 ✔ UX/UI @done(22-11-26 14:56)
-Shooting: 
+✔ Shooting: @done(22-11-27 16:39)
     ✔ Bullet emmiting @done(22-11-26 21:39)
     ✔ Bullet movement @done(22-11-27 16:11)
     ✔ Bullet wall collision @done(22-11-27 16:11)
-    Reload time delay
+    ✔ Reload time delay @done(22-11-27 16:39)
 Enemies:
     Enemy structure, stats
     Spawning

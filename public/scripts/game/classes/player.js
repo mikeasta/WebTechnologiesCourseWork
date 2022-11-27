@@ -41,6 +41,10 @@ export class Player {
 
         // Movement engine
         this.movement_engine = new MovementEngine(game);
+
+        // Shoot mechanics
+        this.on_reload    = false;
+        this.reload_stage = 0;
     }
 
 
@@ -53,6 +57,12 @@ export class Player {
 
     // Perform a shoot
     shoot = (shoot_x, shoot_y) => {
+        // If player already have made a shot
+        if (this.on_reload) return;
+
+        // Block instant next shoot
+        this.on_reload = true;
+
         // Start shoot animation
         this.animation_state = 0;
         this.state           = 'shoot';

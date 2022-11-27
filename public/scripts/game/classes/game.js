@@ -30,6 +30,9 @@ export class Game {
         // Game animation frequency (ms)
         this.animation_frequency = 250;
 
+        // Player reload update frequency
+        this.player_reload_frequency = this.render_frequency * 1.5;
+
         // Tile size (for collisions check)
         this.tile_size = 64;
 
@@ -81,7 +84,10 @@ export class Game {
         this.auto_player_move = setInterval(this.move_player, this.render_frequency)
 
         // Define bullet move loop
-        this.auto_bullets_move = setInterval(this.move_bullets, this.render_frequency)
+        this.auto_bullets_move = setInterval(this.bullet_engine.move_bullets, this.render_frequency)
+
+        // Define player reload stage loop
+        this.auto_player_reload = setInterval(this.player_reload, this.player_reload_frequency)
 
         // Clock update interval
         this.auto_clock_loop = setInterval(this.clock_tick, 1000);
@@ -97,10 +103,17 @@ export class Game {
         this.player.resist();
     }
 
-    
-    // Move bullets 
-    move_bullets = () => {
-        this.bullet_engine.move_bullets();
+    // Reload player gun
+    player_reload = () => {
+        if (this.player.on_reload)
+            this.player.reload_stage++;
+
+        console.log(this.player.reload_stage);
+
+        if (this.player.reload_stage > 6) {
+            this.player.on_reload    = false;
+            this.player.reload_stage = 0;
+        }
     }
 
     // UI timer 
