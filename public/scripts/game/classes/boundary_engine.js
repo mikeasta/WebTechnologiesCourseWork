@@ -129,6 +129,7 @@ export class BoundaryEngine {
     }
 
 
+    // Check collision between bullet and entity (player or enemy)
     bullet_to_entity_collision = bullet => {
         // Entities list
         let entities      = []
@@ -162,12 +163,15 @@ export class BoundaryEngine {
         return collision;
     }
 
+
+    // Check object collision with level walls and teleports
     collision_with_wall = (
         body_x, 
         body_y, 
         body_width, 
         body_height, 
-        offset = {x: 0, y: 0}) => {
+        offset = {x: 0, y: 0}
+    ) => {
             
         // * WALLS
         // Choose correct boundary object (for current level)

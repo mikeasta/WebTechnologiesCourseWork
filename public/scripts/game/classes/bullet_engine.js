@@ -44,6 +44,7 @@ export class BulletEngine {
         this.movement_engine = new MovementEngine(game)
     }
 
+
     // Create bullet and add it to the bullet list
     create_bullet = (
         source_x, 
@@ -55,6 +56,7 @@ export class BulletEngine {
         this.bullets.push(new Bullet(source_x, source_y, angle, source, accel_x, accel_y))
     }
 
+    
     // Move bullets
     move_bullets = () => {
         this.bullets.forEach(bullet => bullet.move(this.movement_engine, this))

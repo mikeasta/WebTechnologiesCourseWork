@@ -59,6 +59,7 @@ export class Enemy {
         this.movement_engine = new MovementEngine(game);
     }
 
+
     // Increase animation step
     forward_animation = () => {
         if (this.state === "shoot" && this.animation_state > 2) {
@@ -73,6 +74,7 @@ export class Enemy {
             this.animation_state += 1;
         }
     }
+
 
     // Changes enemy position according to his velocity
     // Performs each 0.1 sec in Game class.
@@ -92,12 +94,14 @@ export class Enemy {
         this.movement_engine.resist(this)
     }
 
+
     // Get damage
     hurt = damage => {
         this.health -= damage;
         if (this.health <= 0) this.die();
     }
 
+    
     // Die
     die = () => {
         this.state = "death";

@@ -166,6 +166,7 @@ export class Render {
         }
     }
 
+
     // Draw boundaries
     draw_boundaries = () => {
         // Collisions
@@ -231,6 +232,7 @@ export class Render {
             );
         })
     }
+
 
     // Draw player
     draw_player = async () => {
@@ -368,6 +370,7 @@ export class Render {
 
     }
 
+    
     // Draw all gameplay components 
     render = async () => {
         // Clear canvas 

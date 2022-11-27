@@ -36,6 +36,8 @@ export class MovementEngine{
         }
     }
 
+
+    // Bullet move method
     move_bullet = (bullet, bullet_engine) => {
         // Check if bullet can move in direction
         const collision = 

@@ -47,6 +47,7 @@ export class EnemyManager {
         this.current_enemies = this.choose_current_enemy_list()
     }
 
+    
     // Chooses current enemy list (according to game level)
     choose_current_enemy_list = () => {
         switch (this.game.level) {
@@ -55,16 +56,19 @@ export class EnemyManager {
         }
     }
 
+
     // Forward all enemy animations
     all_forward_animation = () => {
         this.current_enemies.forEach(enemy => enemy.forward_animation());
     }
+
 
     // Update enemies
     update_enemies = () => {
         // Current enemies list
         this.current_enemies = this.choose_current_enemy_list()
     }
+
 
     // Kill enemy
     kill = enemy => {

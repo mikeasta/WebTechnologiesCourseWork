@@ -126,6 +126,7 @@ export class Game {
         this.player.resist();
     }
 
+
     // Reload player gun
     player_reload = () => {
         if (this.player.on_reload)
@@ -137,6 +138,7 @@ export class Game {
         }
     }
 
+    
     // UI timer 
     clock_tick = () => {
         this.clock.innerHTML = `Score: ${this.get_current_timer()}`
