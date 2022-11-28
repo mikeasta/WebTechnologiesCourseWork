@@ -110,7 +110,7 @@ export class MovementEngine{
         // Entity's sprite starts running
         if ((entity.velocity_x != 0 || entity.velocity_y != 0) && entity.state != "shoot") {
             entity.state = "run"
-            entity.direction = entity.velocity_x > 0 ? "right" : "left";
+            entity.direction = entity.velocity_x > 0 ? "right" : entity.velocity_x < 0 ? "left" : entity.direction;
         }
 
 

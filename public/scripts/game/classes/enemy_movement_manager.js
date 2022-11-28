@@ -17,11 +17,17 @@ export class EnemyMovementManager {
 
     // Enemy moves randomly
     move_randomly = enemy => {
-        const accel_x = enemy.max_velocity * Math.random() * (Math.random() > 0.5 ? 1: -1);
-        const accel_y = enemy.max_velocity * Math.random() * (Math.random() > 0.5 ? 1: -1);
+        if (enemy.state === "death") return;
 
-        enemy.speed_up(accel_x, accel_y);
-        enemy.move()
+        // Chance to random move lower than chance to just stay
+        if (Math.random() > 0.95) {
+            const accel_x = enemy.max_velocity * Math.random() * (Math.random() > 0.5 ? 1: -1);
+            const accel_y = enemy.max_velocity * Math.random() * (Math.random() > 0.5 ? 1: -1);
+            enemy.speed_up(accel_x, accel_y);
+            enemy.move()
+        } else {
+            enemy.resist();
+        }
     }
 
     // Enemy is stalking player
