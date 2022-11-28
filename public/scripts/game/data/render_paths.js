@@ -5,6 +5,12 @@ export const playerHealthBar = {
     frames: 10
 }
 
+// Player shields
+export const playerShield = {
+    src: "assets/ui/player_shields.png",
+    frames: 4
+}
+
 // Player reload indicator
 export const reloadIndicator = {
     src: "assets/ui/reload_indicator.png",

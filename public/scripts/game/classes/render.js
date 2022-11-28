@@ -1,6 +1,7 @@
 // * ASSETS PATH IMPORTS
 import {
     playerHealthBar,
+    playerShield,
     reloadIndicator,
     playerIdle,
     playerRun,
@@ -91,6 +92,10 @@ export class Render {
         // Player reload indicator
         this.player_image_reload_indicator     = new Image();
         this.player_image_reload_indicator.src = reloadIndicator.src;
+
+        // Player shield indicator
+        this.player_image_shield = new Image();
+        this.player_image_shield.src = playerShield.src;
     
         // ? Enemy
         // Current enemy image
@@ -371,6 +376,18 @@ export class Render {
         }
         
 
+        // Draw indicator
+        this.c.drawImage(
+            this.player_image_shield, 
+            this.player_image_shield.width / playerShield.frames * this.game.player.shields,
+            0,
+            this.player_image_shield.width / playerShield.frames,
+            this.player_image_shield.height,
+            this.player_center_x, 
+            this.player_center_y + this.player_image.height,
+            this.player_image_shield.width / playerShield.frames,
+            this.player_image_shield.height,
+        );
     }
 
     

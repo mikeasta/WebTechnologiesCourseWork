@@ -45,6 +45,9 @@ export class Player {
         // Shoot mechanics
         this.on_reload    = false;
         this.reload_stage = 0;
+
+        // Shields
+        this.shields = 0;
     }
 
 
@@ -113,5 +116,25 @@ export class Player {
     // Simulates force of resistance and stops player
     resist = () => {
         this.movement_engine.resist(this)
+    }
+
+    // Increase shield count
+    increase_shields = () => {
+        if (this.shields < 3) this.shields++;
+    }
+
+    // Hurt player
+    hurt = damage => {
+        if (this.shields > 0) {
+            this.shields--;
+        } else {
+            this.health -= damage;
+            if (this.health <= 0) this.die();
+        }
+    }
+
+    // Die
+    die = () => {
+        this.state = "death"
     }
 }

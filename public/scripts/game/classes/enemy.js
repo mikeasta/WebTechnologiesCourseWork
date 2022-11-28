@@ -114,6 +114,7 @@ export class Enemy {
     die = () => {
         this.state = "death";
         this.animation_state = 0;
+        this.game.player.increase_shields();
     }
 
 

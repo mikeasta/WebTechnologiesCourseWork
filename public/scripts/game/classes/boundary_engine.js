@@ -133,13 +133,16 @@ export class BoundaryEngine {
     bullet_to_entity_collision = bullet => {
         // Entities list
         let entities      = []
-        let bullet_damage = 0;
+        let bullet_damage = bullet.damage;
+        let offset = {x: 0, y: 0}
 
         // Check: if bullet source is player, check collision with enamies.
         // Else, with player
         if (bullet.source === "player") {
             entities = this.game.enemy_manager.current_enemies;
-            bullet_damage = this.game.player.damage;
+        } else {
+            entities.push(this.game.player)
+            offset = this.game.global_offset;
         }
 
         let collision = false
@@ -149,7 +152,8 @@ export class BoundaryEngine {
                 entity.y, 
                 entity.width, 
                 entity.height, 
-                bullet
+                bullet,
+                offset
             )
 
             // If we found collision, we have no 

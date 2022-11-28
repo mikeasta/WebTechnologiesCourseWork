@@ -16,7 +16,8 @@ Enemies:
     Player stalking according to whatever condition (A*)
     ✔ Aggression - shooting at Player @done(22-11-28 17:52)
     Bullet colliding:
-        Damage player
+        ✔ Add shield mechanics (bonus) for player @done(22-11-28 18:12)
+        ✔ Damage player @done(22-11-28 18:12)
         ✔ Damage enemy @done(22-11-27 22:54)
     Death condition:
         For Player
