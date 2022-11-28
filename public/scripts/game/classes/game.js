@@ -242,17 +242,19 @@ export class Game {
             score: this.get_current_timer()
         }
 
-        // Check if there are already record with this name
-        let filtered = leaderboards.leaderboards.filter(record => record.name === newScore.name)
-        if (filtered.length) {
-            leaderboards.leaderboards.forEach(record => {
-                if (record.name === newScore.name) {
-                    if (record.score > newScore.score) 
-                        record.score = newScore.score
-                }
-            })
-        } else {
-            leaderboards.leaderboards.push(newScore)
+        if (this.finished) {
+            // Check if there are already record with this name
+            let filtered = leaderboards.leaderboards.filter(record => record.name === newScore.name)
+            if (filtered.length) {
+                leaderboards.leaderboards.forEach(record => {
+                    if (record.name === newScore.name) {
+                        if (record.score > newScore.score) 
+                            record.score = newScore.score
+                    }
+                })
+            } else {
+                leaderboards.leaderboards.push(newScore)
+            }
         }
 
         // Saving and updatin data
