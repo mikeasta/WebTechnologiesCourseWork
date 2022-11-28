@@ -279,20 +279,23 @@ export class Render {
                     this.enemy_animation.right : this.enemy_animation.left;
 
             // Draw health par
-            this.c.drawImage(
-                this.enemy_image_health_bar, 
-                this.enemy_image_health_bar.width / enemyHealthBar.frames * (
-                    Math.round(enemy.health / enemyHealthBar.frames) - 1 < 0 ? 
-                        0 : Math.round(enemy.health / enemyHealthBar.frames) - 1
-                ),
-                0,
-                this.enemy_image_health_bar.width / enemyHealthBar.frames,
-                this.enemy_image_health_bar.height,
-                enemy.x - this.game.player.x, 
-                enemy.y - this.game.player.y - this.enemy_image_health_bar.height,
-                this.enemy_image_health_bar.width / enemyHealthBar.frames,
-                this.enemy_image_health_bar.height,
-            );
+            if (enemy.state != "death") {
+                this.c.drawImage(
+                    this.enemy_image_health_bar, 
+                    this.enemy_image_health_bar.width / enemyHealthBar.frames * (
+                        Math.round(enemy.health / enemyHealthBar.frames) - 1 < 0 ? 
+                            0 : Math.round(enemy.health / enemyHealthBar.frames) - 1
+                    ),
+                    0,
+                    this.enemy_image_health_bar.width / enemyHealthBar.frames,
+                    this.enemy_image_health_bar.height,
+                    enemy.x - this.game.player.x, 
+                    enemy.y - this.game.player.y - this.enemy_image_health_bar.height,
+                    this.enemy_image_health_bar.width / enemyHealthBar.frames,
+                    this.enemy_image_health_bar.height,
+                );
+            }
+        
 
             // Draw enemy
             this.c.drawImage(
