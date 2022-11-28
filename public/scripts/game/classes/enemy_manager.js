@@ -55,7 +55,6 @@ export class EnemyManager {
                         i * this.game.tile_size,
                     )
                     boss.boss = true
-                    boss.health = 70;
                     this.level_2_enemies.push(boss)
                 }
             })

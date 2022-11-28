@@ -24,7 +24,7 @@ class Bullet {
         this.height = 32;
         this.tile_size = 32;
 
-        this.damage = 10;
+        this.damage = source === "player" ? 20 : 10;
     }
 
     // Move bullet

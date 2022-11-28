@@ -305,8 +305,8 @@ export class Render {
                 this.c.drawImage(
                     this.enemy_image_health_bar, 
                     this.enemy_image_health_bar.width / enemyHealthBar.frames * (
-                        Math.round(enemy.health / enemyHealthBar.frames) - 1 < 0 ? 
-                            0 : Math.round(enemy.health / enemyHealthBar.frames) - 1
+                        Math.round(enemy.health / 10) - 1 < 0 ? 
+                            0 : Math.round(enemy.health / 10) - 1
                     ),
                     0,
                     this.enemy_image_health_bar.width / enemyHealthBar.frames,
