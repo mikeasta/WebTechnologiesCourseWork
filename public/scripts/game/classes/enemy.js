@@ -115,6 +115,9 @@ export class Enemy {
         this.state = "death";
         this.animation_state = 0;
         this.game.player.increase_shields();
+        if (this.boss) {
+            this.game.finished = true;
+        }
     }
 
 

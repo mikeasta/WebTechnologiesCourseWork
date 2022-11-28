@@ -28,15 +28,15 @@ const playerScore    = document.getElementById("playerScore")
 localStorage["leaderboards"] = JSON.stringify({leaderboards: [
     {
         name: "Mike",
-        score: "10"
+        score: "01:12"
     },
     {
         name: "John",
-        score: "1"
+        score: "00:11"
     },
     {
         name: "Dan",
-        score: "256"
+        score: "01:21"
     },
 ]})
 
@@ -88,6 +88,10 @@ startGameButton.addEventListener("click", async () => {
 
 // Leaderboard opening
 leaderboardsButton.addEventListener("click", async () => {
+    // Enable leaderboards table for interaction
+    leaderboardsTableWrapper.style.display = "flex";
+    leaderboardsTable.style.display = "block";
+
     // Check if there no any children
     if (!leaderboardsTable.childNodes.length) {
         // Data loading
@@ -97,8 +101,10 @@ leaderboardsButton.addEventListener("click", async () => {
 
         // Score array sorting
         scoresList.sort((a, b) => {
-            return (a.score > b.score) ? -1 : (a.score < b.score) ? 1 : 0
+            return (a.score < b.score) ? -1 : (a.score > b.score) ? 1 : 0
         })
+
+        console.log(scoresList);
 
         // Creating DOM-elements for each player 
         // Appending them to .html file
@@ -114,10 +120,9 @@ leaderboardsButton.addEventListener("click", async () => {
             newRow.append(scoreCell)
             leaderboardsTable.append(newRow);
         });
+
+        console.log(leaderboardsTable)
     }
-    
-    // Enable leaderboards table for interaction
-    leaderboardsTableWrapper.style.display = "flex";
 });
 
 
@@ -140,11 +145,6 @@ toHome.addEventListener("click", () => {
     gameplayMenu.style.display = "none";
     
     // Finish game
-    game.finish()
-    clearInterval(game.auto_player_forward_animation)
-    clearInterval(game.auto_enemy_forward_animation)
-    clearInterval(game.auto_render_loop)
-
-    // Save data
-    // ...
+    if (!game.gameover && !game.finished) game.finish();
+    game.clear_second_order_loops()
 })

@@ -205,10 +205,9 @@ export class Game {
         if (this.gameover || this.finished) this.finish();
     }
 
-    // Ending of game
-    finish = () => {
 
-        // Clear current loops
+    // Clear all first-order loops
+    clear_first_order_loops = () => {
         clearInterval(this.auto_rule_loop)
         clearInterval(this.auto_player_move)
         clearInterval(this.auto_enemy_move)
@@ -218,6 +217,20 @@ export class Game {
         clearInterval(this.auto_player_reload)
         clearInterval(this.auto_enemy_reload)
         clearInterval(this.auto_clock_loop)
+    }
+
+    // Clear all second-order loops (rendering and animation)
+    clear_second_order_loops = () => {
+        clearInterval(this.auto_player_forward_animation)
+        clearInterval(this.auto_enemy_forward_animation)
+        clearInterval(this.auto_render_loop)
+    }
+
+    // Ending of game
+    finish = () => {
+
+        // Clear current loops
+        this.clear_first_order_loops()
 
         // if game over
         if (this.gameover) {
@@ -226,7 +239,19 @@ export class Game {
 
         // If game finished
         if (this.finished) {
-            
+            // Save data in localStorage
+            let leaderboards = JSON.parse(localStorage["leaderboards"]);
+            let nickname = JSON.parse(localStorage["player.nickname"]);
+
+            const newScore = {
+                name: nickname.nickname, 
+                score: this.get_current_timer()
+    
+            }
+
+            leaderboards.leaderboards.push(newScore)
+            localStorage["leaderboards"] = JSON.stringify(leaderboards);
+            localStorage["player.nickname"] = JSON.stringify({});
         }
     }
 

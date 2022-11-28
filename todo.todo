@@ -26,7 +26,7 @@ Enemies:
 Endgame UI/UX:
     Game over screen
     Finish screen
-    Saving data in leaderboards table
+    ✔ Saving data in leaderboards table @done(22-11-28 21:39)
 Audio manager:
     Find sounds
     Running
