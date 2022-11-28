@@ -4,6 +4,7 @@ import { Render } from "./render.js"
 import { BoundaryEngine } from "./boundary_engine.js";
 import { BulletEngine } from "./bullet_engine.js";
 import { EnemyManager } from "./enemy_manager.js";
+import { AudioManager } from "./audio_manager.js";
 
 export class Game {
     constructor () {
@@ -71,6 +72,7 @@ export class Game {
         this.boundary      = new BoundaryEngine(this);
         this.bullet_engine = new BulletEngine(this)
         this.enemy_manager = new EnemyManager(this);
+        this.audio_manager = new AudioManager(this);
 
         // Keyboard listener setup
         this.controller.setupKeyboardListener(this);

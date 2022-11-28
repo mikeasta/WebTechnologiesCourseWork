@@ -29,9 +29,11 @@ Enemies:
     ✔ Saving data in leaderboards table @done(22-11-28 21:39)
 Audio manager:
     Find sounds
+    ✔ Manager class @done(22-11-28 23:13)
     Running
     Shooting
     Enemy Death
+    Player Damaged
     Player Death
     Boss fight 'ambient'
 CW Paper
