@@ -47,21 +47,42 @@
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
-/* #gameplay_stats {
+#ending_flag {
+    display: flex;
     position: absolute;
-    z-index: 2;
-    bottom: 10px;  
-    left: 60px;
+    width: 1600px;
+    height: 300px;
+    background-color: #34495e;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-#health_bar_container {
-    position: relative;
+#ending_flag p {
+    margin-bottom: 10px;
+    font-size: 40px;
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
 
-#health_bar{
-    width: 500px;
-    height: 50px;
-    image-rendering: crisp-edges;
-    position: absolute;
-    clip: rect(0, 100px, 500px, 0)
-} */
+#to_menu {
+    /* Font */
+    font-size: 24px;
+
+    /* Shaping */
+    background: none;
+    border: none;
+    padding: 10px 25px;
+    margin-top: 10px;
+
+    /* Coloring */
+    background-color: #34495e;
+    box-shadow: 5px 5px rgba(0,0,0,0.5);
+    border: 3px solid #ecf0f1;
+}
+
+#to_menu:hover {
+    transition: .1s;
+    cursor: pointer;
+    box-shadow: 7px 7px rgba(0,0,0,0.5);
+}

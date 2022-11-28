@@ -6,6 +6,7 @@ const startGameButton         = document.getElementById("start_btn")
 const leaderboardsButton      = document.getElementById("leaderboards_btn")
 const leaderboardsCloseButton = document.getElementById("leaderboards_close_btn")
 const toHome                  = document.getElementById("to_home")
+const toMenu                  = document.getElementById("to_menu")
 
 
 // Section imports
@@ -24,6 +25,8 @@ const playerNickname = document.getElementById("playerNickname")
 const playerLevel    = document.getElementById("playerLevel")
 const playerScore    = document.getElementById("playerScore")
 
+// Ending
+const ending = document.getElementById("ending_flag");
 
 localStorage["leaderboards"] = JSON.stringify({leaderboards: [
     {
@@ -81,6 +84,9 @@ startGameButton.addEventListener("click", async () => {
     // Activate gameplay menu
     gameplayMenu.style.display = "flex";
 
+    // Deactivate ending block
+    ending.style.display = "none";
+    
     // Game start
     game.start()
 });
@@ -120,8 +126,6 @@ leaderboardsButton.addEventListener("click", async () => {
             newRow.append(scoreCell)
             leaderboardsTable.append(newRow);
         });
-
-        console.log(leaderboardsTable)
     }
 });
 
@@ -140,6 +144,16 @@ leaderboardsCloseButton.addEventListener("click", () => {
 
 // Return home button
 toHome.addEventListener("click", () => {
+    // Close gameplay screen, open main menu
+    mainMenu.style.display     = "flex";
+    gameplayMenu.style.display = "none";
+    
+    // Finish game
+    if (!game.gameover && !game.finished) game.finish();
+    game.clear_second_order_loops()
+})
+
+toMenu.addEventListener("click", () => {
     // Close gameplay screen, open main menu
     mainMenu.style.display     = "flex";
     gameplayMenu.style.display = "none";

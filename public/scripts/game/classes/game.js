@@ -8,7 +8,7 @@ import { EnemyManager } from "./enemy_manager.js";
 export class Game {
     constructor () {
         // Level num
-        this.level = 2;
+        this.level = 1;
 
         // Start timestamp
         this.startTime = new Date().getTime();
@@ -202,7 +202,7 @@ export class Game {
 
     // Check ending
     check_ending = () => {
-        if (this.gameover || this.finished) this.finish();
+        if (this.gameover || this.finished) this.finish(true);
     }
 
 
@@ -226,33 +226,61 @@ export class Game {
         clearInterval(this.auto_render_loop)
     }
 
-    // Ending of game
-    finish = () => {
 
+    // Ending of game
+    finish = (need_to_ending_block = false) => {
         // Clear current loops
         this.clear_first_order_loops()
 
-        // if game over
-        if (this.gameover) {
+        // Save data in localStorage
+        let leaderboards = JSON.parse(localStorage["leaderboards"]);
+        let nickname = JSON.parse(localStorage["player.nickname"]);
 
+        // New record object
+        const newScore = {
+            name: nickname.nickname, 
+            score: this.get_current_timer()
         }
 
-        // If game finished
-        if (this.finished) {
-            // Save data in localStorage
-            let leaderboards = JSON.parse(localStorage["leaderboards"]);
-            let nickname = JSON.parse(localStorage["player.nickname"]);
+        // Check if there are already record with this name
+        let filtered = leaderboards.leaderboards.filter(record => record.name === newScore.name)
+        if (filtered.length) {
+            leaderboards.leaderboards.forEach(record => {
+                if (record.name === newScore.name) {
+                    if (record.score > newScore.score) 
+                        record.score = newScore.score
+                }
+            })
+        } else {
+            leaderboards.leaderboards.push(newScore)
+        }
 
-            const newScore = {
-                name: nickname.nickname, 
-                score: this.get_current_timer()
-    
+        // Saving and updatin data
+        localStorage["leaderboards"] = JSON.stringify(leaderboards);
+        localStorage["player.nickname"] = JSON.stringify({});
+
+        // DOM elements for final result
+        const endingBlock = document.getElementById("ending_flag");
+        const endingCause = document.getElementById("ending_cause");
+        const endingScore = document.getElementById("ending_score");
+
+        // If there is need to show ending block
+        if (need_to_ending_block) {
+            endingBlock.style.display = "flex";
+            endingScore.innerHTML = `Name: ${newScore.name}, score: ${newScore.score}`;
+
+            // if game over
+            if (this.gameover) {
+                endingBlock.style.backgroundColor = "#e74c3c";
+                endingCause.innerHTML = "Game over!"
             }
 
-            leaderboards.leaderboards.push(newScore)
-            localStorage["leaderboards"] = JSON.stringify(leaderboards);
-            localStorage["player.nickname"] = JSON.stringify({});
-        }
+            // If game finished
+            if (this.finished) {
+                endingBlock.style.backgroundColor = "#1abc9c";
+                endingCause.innerHTML = "Finish!"
+            }
+        } 
     }
 
     
