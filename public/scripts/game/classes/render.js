@@ -344,6 +344,8 @@ export class Render {
     // Draw player health bar
     draw_player_indicators = async () => {
 
+        if (this.game.player.state === 'death') return;
+        
         // Draw health par
         await this.c.drawImage(
             this.player_image_health_bar, 

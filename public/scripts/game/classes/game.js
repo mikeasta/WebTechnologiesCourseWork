@@ -82,6 +82,12 @@ export class Game {
 
     // Starting game loops
     loop = () => {
+        // Define rule loop interval
+        this.auto_rule_loop = setInterval(
+            this.check_ending, 
+            this.render_frequency
+        );
+
         // Define loop interval
         this.auto_render_loop = setInterval(
             this.render_engine.render, 
@@ -194,13 +200,24 @@ export class Game {
     }
 
 
+    // Check ending
+    check_ending = () => {
+        if (this.gameover || this.finished) this.finish();
+    }
+
     // Ending of game
     finish = () => {
 
         // Clear current loops
-        clearInterval(this.auto_render_loop)
-        clearInterval(this.auto_clock_loop)
+        clearInterval(this.auto_rule_loop)
         clearInterval(this.auto_player_move)
+        clearInterval(this.auto_enemy_move)
+        clearInterval(this.auto_enemy_range_check)
+        clearInterval(this.auto_enemy_shoot)
+        clearInterval(this.auto_bullets_move)
+        clearInterval(this.auto_player_reload)
+        clearInterval(this.auto_enemy_reload)
+        clearInterval(this.auto_clock_loop)
 
         // if game over
         if (this.gameover) {

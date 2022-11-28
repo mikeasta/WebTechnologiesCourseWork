@@ -141,7 +141,10 @@ toHome.addEventListener("click", () => {
     
     // Finish game
     game.finish()
-    
+    clearInterval(game.auto_player_forward_animation)
+    clearInterval(game.auto_enemy_forward_animation)
+    clearInterval(game.auto_render_loop)
+
     // Save data
     // ...
 })

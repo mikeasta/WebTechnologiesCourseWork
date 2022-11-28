@@ -97,8 +97,11 @@ export class Player {
 
     // Increase animation step
     forward_animation = () => {
+        if (this.state == "death") console.log(this.state, this.animation_state)
         if (this.state === "shoot" && this.animation_state > 2) {
             this.state = "idle";
+        } else if ((this.state == "death") && (this.animation_state > 5)) {
+            return
         } else if (this.animation_state > 6) {
             this.animation_state = 0;
         } else  {
@@ -135,6 +138,8 @@ export class Player {
 
     // Die
     die = () => {
-        this.state = "death"
+        this.game.gameover = true;
+        this.state = "death";
+        this.animation_state = 0
     }
 }

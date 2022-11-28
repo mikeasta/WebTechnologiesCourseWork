@@ -20,7 +20,7 @@ Enemies:
         ✔ Damage player @done(22-11-28 18:12)
         ✔ Damage enemy @done(22-11-27 22:54)
     Death condition:
-        For Player
+        ✔ For Player @done(22-11-28 18:36)
         ✔ For Enemy @done(22-11-27 23:16)
     Set-up boss
 Endgame UI/UX:
