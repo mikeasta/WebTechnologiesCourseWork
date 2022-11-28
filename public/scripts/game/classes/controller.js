@@ -39,16 +39,12 @@ export class Controller {
     // Move left event
     moveLeft = entity => {
         entity.speed_up(-entity.force_acceleration, 0);
-        if (entity.state != "shoot")
-            entity.direction = "left"
     }
 
 
     // Move right event
     moveRight = entity => {
         entity.speed_up(entity.force_acceleration, 0);
-        if (entity.state != "shoot")
-            entity.direction = "right"
     }
 
 

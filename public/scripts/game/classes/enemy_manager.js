@@ -1,8 +1,9 @@
-import { Enemy } from "./enemy.js"
+import { Enemy } from "./enemy.js";
 import {
     level_1_enemies,
     level_2_enemies
-} from "../data/level_enemies.js"
+} from "../data/level_enemies.js";
+import { EnemyMovementManager } from "./enemy_movement_manager.js";
 
 export class EnemyManager {
     constructor (game) {
@@ -45,6 +46,9 @@ export class EnemyManager {
 
         // Current enemies list
         this.current_enemies = this.choose_current_enemy_list()
+
+        // Enemies movement manager
+        this.enemy_movement_manager = new EnemyMovementManager(game);
     }
 
     

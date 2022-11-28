@@ -57,6 +57,9 @@ export class Enemy {
 
         // Movement engine
         this.movement_engine = new MovementEngine(game);
+
+        // Attitude
+        this.stalking = false;
     }
 
 
@@ -79,7 +82,7 @@ export class Enemy {
     // Changes enemy position according to his velocity
     // Performs each 0.1 sec in Game class.
     move = () => {
-        this.movement_engine.move(this)
+        this.movement_engine.move_enemy(this)
     }
     
 

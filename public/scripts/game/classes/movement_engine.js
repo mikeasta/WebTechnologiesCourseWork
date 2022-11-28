@@ -37,6 +37,27 @@ export class MovementEngine{
     }
 
 
+    // Move enemy
+    move_enemy = enemy => {
+        // Check if we can move in direction
+        const collision = 
+            this.game.boundary
+                .collision_with_wall(
+                    enemy.x + enemy.velocity_x,
+                    enemy.y + enemy.velocity_y,
+                    enemy.width,
+                    enemy.height
+                )
+
+        // If collision take place
+        // try to lower speed to move player a little further
+        if (!collision) {
+            // If there are no collision, move enemy
+            enemy.x += enemy.velocity_x;
+            enemy.y += enemy.velocity_y;
+        }
+    }
+
     // Bullet move method
     move_bullet = (bullet, bullet_engine) => {
         // Check if bullet can move in direction
@@ -87,8 +108,12 @@ export class MovementEngine{
         }
 
         // Entity's sprite starts running
-        if ((entity.velocity_x != 0 || entity.velocity_y != 0) && entity.state != "shoot")
+        if ((entity.velocity_x != 0 || entity.velocity_y != 0) && entity.state != "shoot") {
             entity.state = "run"
+            entity.direction = entity.velocity_x > 0 ? "right" : "left";
+        }
+
+
     }
 
 

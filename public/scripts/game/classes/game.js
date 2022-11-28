@@ -91,6 +91,12 @@ export class Game {
             this.render_frequency
         );
 
+        // Define enemies move loop
+        this.auto_enemy_move = setInterval(
+            this.move_enemies, 
+            this.render_frequency
+        );
+
         // Define bullet move loop
         this.auto_bullets_move = setInterval(
             this.bullet_engine.move_bullets, 
@@ -124,6 +130,12 @@ export class Game {
     move_player = () => {
         this.player.move();
         this.player.resist();
+    }
+
+    
+    // Move enemies
+    move_enemies = () => {
+        this.enemy_manager.enemy_movement_manager.speed_up_all_enemies()
     }
 
 
