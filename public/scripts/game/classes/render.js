@@ -121,6 +121,23 @@ export class Render {
         // Enemy health bar 
         this.enemy_image_health_bar     = new Image();
         this.enemy_image_health_bar.src = enemyHealthBar.src;
+
+        // ? Boss
+        // Idle sprite
+        this.boss_image_idle      = new Image();
+        this.boss_image_idle.src  = bossIdle.right;
+
+        // Run sprite
+        this.boss_image_run       = new Image();
+        this.boss_image_run.src   = bossRun.right;
+
+        // Shoot sprite
+        this.boss_image_shoot     = new Image();
+        this.boss_image_shoot.src = bossShoot.right;
+
+        // Death sprite
+        this.boss_image_death     = new Image();
+        this.boss_image_death.src = bossDeath.right;
     }
 
 
@@ -153,20 +170,20 @@ export class Render {
         // Define enemy animation
         switch (enemy.state) {
             case "idle":  
-                this.enemy_animation = enemyIdle; 
-                this.enemy_image = this.enemy_image_idle;  
+                this.enemy_animation = enemy.boss ? bossIdle : enemyIdle; 
+                this.enemy_image = enemy.boss ? this.boss_image_idle : this.enemy_image_idle;  
                 break;
             case "run" :  
-                this.enemy_animation = enemyRun;   
-                this.enemy_image = this.enemy_image_run;  
+                this.enemy_animation = enemy.boss ? bossRun : enemyRun;   
+                this.enemy_image = enemy.boss ? this.boss_image_run : this.enemy_image_run;  
                 break;
             case "shoot": 
-                this.enemy_animation = enemyShoot; 
-                this.enemy_image = this.enemy_image_shoot; 
+                this.enemy_animation = enemy.boss ? bossShoot : enemyShoot; 
+                this.enemy_image = enemy.boss ? this.boss_image_shoot : this.enemy_image_shoot; 
                 break;
             case "death": 
-                this.enemy_animation = enemyDeath; 
-                this.enemy_image = this.enemy_image_death;
+                this.enemy_animation = enemy.boss ? bossDeath : enemyDeath; 
+                this.enemy_image = enemy.boss ? this.boss_image_death : this.enemy_image_death;
                 break;
         }
     }

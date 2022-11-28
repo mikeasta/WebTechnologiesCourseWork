@@ -24,14 +24,7 @@ class Bullet {
         this.height = 32;
         this.tile_size = 32;
 
-        this.damage = 0;
-
-        // Check damage
-        if (source === "player" || source == "boss") {
-            this.damage = 20;
-        } else {
-            this.damage = 10;
-        }
+        this.damage = 10;
     }
 
     // Move bullet

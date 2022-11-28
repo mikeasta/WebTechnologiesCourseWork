@@ -1,10 +1,10 @@
 import { Enemy } from "./enemy.js";
 import {
     level_1_enemies,
-    level_2_enemies
+    level_2_enemies,
+    level_2_boss
 } from "../data/level_enemies.js";
 import { EnemyMovementManager } from "./enemy_movement_manager.js";
-import { enemyBullet } from "../data/render_paths.js";
 
 export class EnemyManager {
     constructor (game) {
@@ -41,6 +41,22 @@ export class EnemyManager {
                             i * this.game.tile_size,
                         )
                     )
+                }
+            })
+        });
+
+        level_2_boss.forEach((row, i) => {
+            row.forEach((symbol, j) => {
+                // If there enemy
+                if (symbol === 1) {
+                    const boss = new Enemy(
+                        game,
+                        j * this.game.tile_size,
+                        i * this.game.tile_size,
+                    )
+                    boss.boss = true
+                    boss.health = 70;
+                    this.level_2_enemies.push(boss)
                 }
             })
         });

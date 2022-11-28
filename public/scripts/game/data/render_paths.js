@@ -118,7 +118,7 @@ export const bossShoot = {
 export const bossDeath = {
     left: "assets/entities/boss/death_left.png",
     right: "assets/entities/boss/death_right.png",
-    frames: 4,
+    frames: 7,
     size: 64 // in pixels
 }
 
