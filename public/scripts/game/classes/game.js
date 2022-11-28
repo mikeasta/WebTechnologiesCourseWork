@@ -8,7 +8,7 @@ import { EnemyManager } from "./enemy_manager.js";
 export class Game {
     constructor () {
         // Level num
-        this.level = 1;
+        this.level = 2;
 
         // Start timestamp
         this.startTime = new Date().getTime();

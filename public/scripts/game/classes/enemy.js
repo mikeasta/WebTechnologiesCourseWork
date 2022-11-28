@@ -120,6 +120,7 @@ export class Enemy {
 
     // Shoot
     shoot = (shoot_x, shoot_y) => {
+        
         // If player already have made a shot
         if (this.on_reload || this.state == "death") return;
 
@@ -134,8 +135,8 @@ export class Enemy {
         this.direction  = shoot_x < this.x ? "left" : "right";
 
         // Define source coordinates
-        const source_x = this.x + this.width / 64;
-        const source_y = this.y + this.height / 64;
+        const source_x = this.x + this.width / 2;
+        const source_y = this.y + this.height / 2;
 
         // Calc angle
         const angle = tilt_angle(
@@ -145,14 +146,93 @@ export class Enemy {
             shoot_y
         )
 
-        // Create bullet
-        this.game.bullet_engine.create_bullet(
-            source_x, 
-            source_y, 
-            angle,
-            this.velocity_x,
-            this.velocity_y,
-            "enemy"
-        )
+        // Shooting type define
+        const shoot_type = Math.random();
+
+        if (!this.boss || (this.boss && shoot_type < 0.3)) {
+            // Create ordinary bullet
+            this.game.bullet_engine.create_bullet(
+                source_x, 
+                source_y, 
+                angle,
+                this.velocity_x,
+                this.velocity_y,
+                "enemy"
+            )
+        } else if (this.boss && shoot_type >= 0.3 && shoot_type <= 0.65) {
+            // Create "plus" bullet
+            this.game.bullet_engine.create_bullet(
+                source_x, 
+                source_y, 
+                0,
+                this.velocity_x,
+                this.velocity_y,
+                "enemy"
+            )
+
+            this.game.bullet_engine.create_bullet(
+                source_x, 
+                source_y, 
+                90,
+                this.velocity_x,
+                this.velocity_y,
+                "enemy"
+            )
+
+            this.game.bullet_engine.create_bullet(
+                source_x, 
+                source_y, 
+                180,
+                this.velocity_x,
+                this.velocity_y,
+                "enemy"
+            )
+
+            this.game.bullet_engine.create_bullet(
+                source_x, 
+                source_y, 
+                270,
+                this.velocity_x,
+                this.velocity_y,
+                "enemy"
+            )
+        } else if (this.boss && shoot_type > 0.65) {
+            // Create "cross" bullet
+            this.game.bullet_engine.create_bullet(
+                source_x, 
+                source_y, 
+                45,
+                this.velocity_x,
+                this.velocity_y,
+                "enemy"
+            )
+
+            this.game.bullet_engine.create_bullet(
+                source_x, 
+                source_y, 
+                135,
+                this.velocity_x,
+                this.velocity_y,
+                "enemy"
+            )
+
+            this.game.bullet_engine.create_bullet(
+                source_x, 
+                source_y, 
+                225,
+                this.velocity_x,
+                this.velocity_y,
+                "enemy"
+            )
+
+            this.game.bullet_engine.create_bullet(
+                source_x, 
+                source_y, 
+                315,
+                this.velocity_x,
+                this.velocity_y,
+                "enemy"
+            )
+        }
     }
 }

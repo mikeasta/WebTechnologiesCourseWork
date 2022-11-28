@@ -15,14 +15,14 @@ Enemies:
     ✔ Movement manager @done(22-11-28 13:50)
     Player stalking according to whatever condition (A*)
     ✔ Aggression - shooting at Player @done(22-11-28 17:52)
-    Bullet colliding:
+    ✔ Bullet colliding: @done(22-11-28 21:15)
         ✔ Add shield mechanics (bonus) for player @done(22-11-28 18:12)
         ✔ Damage player @done(22-11-28 18:12)
         ✔ Damage enemy @done(22-11-27 22:54)
-    Death condition:
+    ✔ Death condition: @done(22-11-28 21:15)
         ✔ For Player @done(22-11-28 18:36)
         ✔ For Enemy @done(22-11-27 23:16)
-    Set-up boss
+    ✔ Set-up boss @done(22-11-28 21:15)
 Endgame UI/UX:
     Game over screen
     Finish screen
