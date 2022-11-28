@@ -12,9 +12,9 @@
 Enemies:
     ✔ Enemy structure, stats @done(22-11-27 18:24)
     ✔ Spawning @done(22-11-27 22:14)
-    Movement manager
+    ✔ Movement manager @done(22-11-28 13:50)
     Player stalking according to whatever condition (A*)
-    Aggression - shooting at Player
+    ✔ Aggression - shooting at Player @done(22-11-28 17:52)
     Bullet colliding:
         Damage player
         ✔ Damage enemy @done(22-11-27 22:54)

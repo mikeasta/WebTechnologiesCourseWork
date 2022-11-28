@@ -1,4 +1,5 @@
 import { MovementEngine } from "./movement_engine.js";
+import { tilt_angle } from "../utils/tilt_angle.js";
 
 export class Enemy {
     constructor (
@@ -60,6 +61,10 @@ export class Enemy {
 
         // Attitude
         this.stalking = false;
+        this.attacking = false;
+
+        // Reload stat
+        this.on_reload = false;
     }
 
 
@@ -109,5 +114,44 @@ export class Enemy {
     die = () => {
         this.state = "death";
         this.animation_state = 0;
+    }
+
+
+    // Shoot
+    shoot = (shoot_x, shoot_y) => {
+        // If player already have made a shot
+        if (this.on_reload || this.state == "death") return;
+
+        // Block instant next shoot
+        this.on_reload = true;
+
+        // Start shoot animation
+        this.animation_state = 0;
+        this.state           = 'shoot';
+
+        // Rotate player
+        this.direction  = shoot_x < this.x ? "left" : "right";
+
+        // Define source coordinates
+        const source_x = this.x + this.width / 64;
+        const source_y = this.y + this.height / 64;
+
+        // Calc angle
+        const angle = tilt_angle(
+            this.x,
+            this.y,
+            shoot_x,
+            shoot_y
+        )
+
+        // Create bullet
+        this.game.bullet_engine.create_bullet(
+            source_x, 
+            source_y, 
+            angle,
+            this.velocity_x,
+            this.velocity_y,
+            "enemy"
+        )
     }
 }

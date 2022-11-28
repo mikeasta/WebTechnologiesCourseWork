@@ -34,6 +34,9 @@ export class Game {
         // Player reload update frequency
         this.player_reload_frequency = this.render_frequency * 1.5;
 
+        // Enemy reload update frequency
+        this.enemy_reload_frequency = this.render_frequency * 3.5;
+
         // Tile size (for collisions check)
         this.tile_size = 64;
 
@@ -97,6 +100,18 @@ export class Game {
             this.render_frequency
         );
 
+        // Define enemy check range loop
+        this.auto_enemy_range_check = setInterval(
+            this.enemy_manager.all_check_range,
+            this.render_frequency
+        )
+
+        // Define enemy shoot ability loop
+        this.auto_enemy_shoot = setInterval(
+            this.enemy_manager.all_shoot,
+            this.render_frequency
+        )
+
         // Define bullet move loop
         this.auto_bullets_move = setInterval(
             this.bullet_engine.move_bullets, 
@@ -108,6 +123,12 @@ export class Game {
             this.player_reload, 
             this.player_reload_frequency
         );
+
+        // Define enemy reload stage loop
+        this.auto_enemy_reload = setInterval(
+            this.enemy_manager.all_reload,
+            this.enemy_reload_frequency
+        )
 
         // Clock update interval
         this.auto_clock_loop = setInterval(this.clock_tick, 1000);

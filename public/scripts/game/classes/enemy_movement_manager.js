@@ -11,7 +11,11 @@ export class EnemyMovementManager {
 
         // Check if they are waiting or stalking
         enemies.forEach(enemy => {
-            enemy.stalking ? this.move_stalking(enemy) : this.move_randomly(enemy);
+            if (enemy.stalking) {
+                this.move_stalking(enemy)
+            } else if (!enemy.attacking) {
+                this.move_randomly(enemy);
+            }
         }); 
     }
 

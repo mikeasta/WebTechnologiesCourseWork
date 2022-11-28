@@ -4,6 +4,7 @@ import {
     level_2_enemies
 } from "../data/level_enemies.js";
 import { EnemyMovementManager } from "./enemy_movement_manager.js";
+import { enemyBullet } from "../data/render_paths.js";
 
 export class EnemyManager {
     constructor (game) {
@@ -49,6 +50,10 @@ export class EnemyManager {
 
         // Enemies movement manager
         this.enemy_movement_manager = new EnemyMovementManager(game);
+
+        // Aggro range
+        this.aggro_range  = 750;
+        this.attack_range = 500;
     }
 
     
@@ -77,5 +82,55 @@ export class EnemyManager {
     // Kill enemy
     kill = enemy => {
         this.current_enemies = this.current_enemies.filter(el => el.id != enemy.id);
+    }
+
+    // Check all distances
+    all_check_range = () => {
+        let distance = 0;
+        this.current_enemies.forEach(enemy => {
+            distance = Math.sqrt(
+                Math.pow(this.game.player.x + this.game.global_offset.x - enemy.x, 2) + 
+                Math.pow(this.game.player.y + this.game.global_offset.y - enemy.y, 2)
+            )
+
+            if (distance > this.aggro_range) {
+                enemy.stalking  = false;
+                enemy.attacking = false;
+            } else if (distance <= this.aggro_range && distance > this.attack_range) {
+                enemy.stalking  = true;
+                enemy.attacking = false;
+            } else if (distance <= this.attack_range) {
+                enemy.stalking  = false;
+                enemy.attacking = true;
+            }
+        })
+    }
+
+
+    // Check all enemies to shoot
+    all_shoot = () => {
+        this.current_enemies.forEach(enemy => {
+            if (enemy.attacking) {
+                console.log("attacks");
+                enemy.shoot(
+                    this.game.player.x + this.game.global_offset.x,
+                    this.game.player.y + this.game.global_offset.y
+                )
+            }
+        });
+    }
+
+    
+    // Check all enemies to reload
+    all_reload = () => {
+        this.current_enemies.forEach(enemy => {
+            if (enemy.on_reload)
+                enemy.reload_stage++;
+
+            if (enemy.reload_stage > 6) {
+                enemy.on_reload    = false;
+                enemy.reload_stage = 0;
+            }
+        });
     }
 }
