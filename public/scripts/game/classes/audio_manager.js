@@ -13,6 +13,15 @@ export class AudioManager {
 
         this.audio_run_list = {}
         this.boss_fight_started = false;
+
+        // Sound control button
+        this.sound_toggle = document.getElementById("sound_toggle");
+        this.sound_toggle.addEventListener("click", () => {
+            this.music_able = !this.music_able;
+            this.sound_toggle.innerHTML = this.music_able ? 
+                "Sound <i style='color: #2ecc71'>ON</i>" : 
+                "Sound <i style='color: #e74c3c'>OFF</i>"
+        });
     }
 
 

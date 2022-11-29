@@ -86,3 +86,7 @@
     cursor: pointer;
     box-shadow: 7px 7px rgba(0,0,0,0.5);
 }
+
+#sound_toggle:hover {
+    cursor:pointer;
+}

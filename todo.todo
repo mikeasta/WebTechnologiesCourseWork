@@ -9,7 +9,7 @@
     ✔ Bullet movement @done(22-11-27 16:11)
     ✔ Bullet wall collision @done(22-11-27 16:11)
     ✔ Reload time delay @done(22-11-27 16:39)
-Enemies:
+✔ Enemies: @done(22-11-29 16:17)
     ✔ Enemy structure, stats @done(22-11-27 18:24)
     ✔ Spawning @done(22-11-27 22:14)
     ✔ Movement manager @done(22-11-28 13:50)
@@ -27,7 +27,7 @@ Enemies:
     ✔ Game over screen @done(22-11-28 22:59)
     ✔ Finish screen @done(22-11-28 22:59)
     ✔ Saving data in leaderboards table @done(22-11-28 21:39)
-✔ Audio manager: @done(22-11-29 14:12)
+Audio manager:
     ✔ Find sounds @done(22-11-29 12:51)
     ✔ Manager class @done(22-11-28 23:13)
     ✔ Player running @done(22-11-29 13:58)
@@ -36,4 +36,5 @@ Enemies:
     ✔ Player Damaged @done(22-11-29 13:50)
     ✔ Player Death @done(22-11-29 13:50)
     ✔ Boss fight music @done(22-11-29 14:08)
+    Turn on/off audio button
 CW Paper
