@@ -60,14 +60,14 @@ export class Player {
 
     // Perform a shoot
     shoot = (shoot_x, shoot_y) => {
-        // Shoot sound
-        this.game.audio_manager.play_shoot()
-
         // If player already have made a shot
         if (this.on_reload) return;
 
         // Block instant next shoot
         this.on_reload = true;
+
+        // Shoot sound
+        this.game.audio_manager.play_shoot()
 
         // Start shoot animation
         this.animation_state = 0;
@@ -87,8 +87,6 @@ export class Player {
             shoot_x,
             shoot_y
         )
-
-        console.log(angle)
 
         // Create bullet
         this.game.bullet_engine.create_bullet(
