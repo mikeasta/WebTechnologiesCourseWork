@@ -158,7 +158,7 @@ export class BoundaryEngine {
 
             // If we found collision, we have no 
             // need to check collision further - entity definately stop.
-            if (collision) {
+            if (collision && !entity.ghost) {
                 entity.hurt(bullet_damage);
                 break;
             };

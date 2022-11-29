@@ -10,6 +10,9 @@ export class Enemy {
         // Game
         this.game = game;
 
+        // Ghost mode
+        this.ghost = false;
+        
         // Ally
         this.player_ally = false;
 

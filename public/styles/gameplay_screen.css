@@ -36,7 +36,7 @@
     z-index: 2;
     top: 30px;  
     left: 200px;
-    width: 600px;
+    width: 800px;
     justify-content: space-between;
     background-color: #94b0c26c;
     padding: 10px 20px;
@@ -87,6 +87,7 @@
     box-shadow: 7px 7px rgba(0,0,0,0.5);
 }
 
-#sound_toggle:hover {
+#sound_toggle:hover,
+#ghost_toggle:hover {
     cursor:pointer;
 }

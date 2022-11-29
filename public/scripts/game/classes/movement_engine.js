@@ -21,7 +21,7 @@ export class MovementEngine{
 
         // If collision take place
         // try to lower speed to move player a little further
-        if (collision) {
+        if (collision && !entity.ghost) {
             entity.velocity_x = 
                 entity.velocity_x > 0 ? entity.velocity_x -1: 
                     entity.velocity_x < 0 ? entity.velocity_x + 1: 0;

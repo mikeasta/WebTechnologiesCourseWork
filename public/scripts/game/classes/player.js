@@ -48,6 +48,16 @@ export class Player {
 
         // Shields
         this.shields = 0;
+
+        // Ghost mode
+        this.ghost = false;
+        this.ghost_toggle = document.getElementById("ghost_toggle")
+        this.ghost_toggle.addEventListener("click", () => {
+            this.ghost = !this.ghost;
+            this.ghost_toggle.innerHTML = this.ghost ? 
+                "Ghost mode <i style='color: #2ecc71'>ON</i>" : 
+                "Ghost mode <i style='color: #e74c3c'>OFF</i>"
+        })
     }
 
 
