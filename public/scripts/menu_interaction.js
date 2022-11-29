@@ -28,20 +28,7 @@ const playerScore    = document.getElementById("playerScore")
 // Ending
 const ending = document.getElementById("ending_flag");
 
-localStorage["leaderboards"] = JSON.stringify({leaderboards: [
-    {
-        name: "Mike",
-        score: "01:12"
-    },
-    {
-        name: "John",
-        score: "00:11"
-    },
-    {
-        name: "Dan",
-        score: "01:21"
-    },
-]})
+localStorage["leaderboards"] = JSON.stringify({leaderboards: []})
 
 
 // * GAME INITIALIZATION
