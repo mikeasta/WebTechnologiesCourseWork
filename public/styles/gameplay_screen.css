@@ -36,8 +36,9 @@
     z-index: 2;
     top: 30px;  
     left: 200px;
-    width: 800px;
+    width: 900px;
     justify-content: space-between;
+    align-items: center;
     background-color: #94b0c26c;
     padding: 10px 20px;
 }
@@ -90,4 +91,10 @@
 #sound_toggle:hover,
 #ghost_toggle:hover {
     cursor:pointer;
+}
+
+#dev_tools_divider {
+    height: 20px;
+    border: 1px solid #fff;
+    box-shadow: 1px 1px rgba(0,0,0,0.5);
 }
