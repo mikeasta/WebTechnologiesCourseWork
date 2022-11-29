@@ -231,6 +231,9 @@ export class Game {
 
     // Ending of game
     finish = (need_to_ending_block = false) => {
+        // Finish music
+        this.audio_manager.turn_off();
+        
         // Clear current loops
         this.clear_first_order_loops()
 

@@ -114,6 +114,11 @@ export class EnemyManager {
             } else if (distance <= this.aggro_range && distance > this.attack_range) {
                 enemy.stalking  = true;
                 enemy.attacking = false;
+                
+                // If its boss
+                if(enemy.boss) {
+                    this.game.audio_manager.play_boss_fight()
+                }
             } else if (distance <= this.attack_range) {
                 enemy.stalking  = false;
                 enemy.attacking = true;
