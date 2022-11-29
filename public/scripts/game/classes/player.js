@@ -60,6 +60,9 @@ export class Player {
 
     // Perform a shoot
     shoot = (shoot_x, shoot_y) => {
+        // Shoot sound
+        this.game.audio_manager.play_shoot()
+
         // If player already have made a shot
         if (this.on_reload) return;
 
@@ -132,7 +135,12 @@ export class Player {
             this.shields--;
         } else {
             this.health -= damage;
-            if (this.health <= 0) this.die();
+            if (this.health <= 0)  {
+                this.game.audio_manager.play_player_death();
+                this.die();
+            } else {
+                this.game.audio_manager.play_player_hurt();
+            }
         }
     }
 

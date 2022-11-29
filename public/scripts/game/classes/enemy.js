@@ -112,6 +112,7 @@ export class Enemy {
     
     // Die
     die = () => {
+        this.game.audio_manager.play_player_hurt()
         this.state = "death";
         this.animation_state = 0;
         this.game.player.increase_shields();
@@ -123,12 +124,14 @@ export class Enemy {
 
     // Shoot
     shoot = (shoot_x, shoot_y) => {
-        
         // If player already have made a shot
         if (this.on_reload || this.state == "death") return;
 
         // Block instant next shoot
         this.on_reload = true;
+
+        // Shoot sound
+        this.game.audio_manager.play_shoot()
 
         // Start shoot animation
         this.animation_state = 0;

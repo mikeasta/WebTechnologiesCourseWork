@@ -30,10 +30,11 @@ Enemies:
 Audio manager:
     ✔ Find sounds @done(22-11-29 12:51)
     ✔ Manager class @done(22-11-28 23:13)
-    Running
-    Shooting
-    Enemy Death
-    Player Damaged
-    Player Death
+    Background
+    ✔ Player running @done(22-11-29 13:58)
+    ✔ Shooting @done(22-11-29 13:52)
+    ✔ Enemy Death @done(22-11-29 13:50)
+    ✔ Player Damaged @done(22-11-29 13:50)
+    ✔ Player Death @done(22-11-29 13:50)
     Boss fight music
 CW Paper

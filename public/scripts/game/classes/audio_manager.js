@@ -12,7 +12,8 @@ export class AudioManager {
         this.player_death = new Audio("assets/sound/player_death.mp3")
         this.player_hurt  = new Audio("assets/sound/player_hurt.mp3")
         this.run_sound    = new Audio("assets/sound/run_sound.ogg")
-        this.shoot        = new Audio("assets/sound/shoot.mp3")
+
+        this.audio_run_list = {}
     }
 
 
@@ -37,27 +38,38 @@ export class AudioManager {
 
     // Play boss fight
     play_boss_fight = () => {
-        this.boss_fight.play();
+        if (this.music_able) this.boss_fight.play();
     }
 
 
     // Play player death
     play_player_death = () => {
-        this.player_death.play();
+        if (this.music_able) this.player_death.play();
     }
 
     // Play player hurt
     play_player_hurt = () => {
-        this.player_hurt.play();
+        if (this.music_able) this.player_hurt.play();
     }
 
     // Play run sound
-    play_run_sound = () => {
-        this.run_sound.play();
+    play_run_sound = source => {
+        if (this.music_able) {
+            if (!this.audio_run_list[source]) {
+                this.audio_run_list[source] = true;
+                new Audio("assets/sound/run_sound.ogg").play()
+                setTimeout(
+                    () => {
+                        this.audio_run_list[source] = false;
+                    }, 670)
+            }
+        }
     }
 
     // Play shoot
     play_shoot = () => {
-        this.shoot.play();
+        if (this.music_able) { 
+            new Audio("assets/sound/shoot.mp3").play() 
+        };
     }
 }

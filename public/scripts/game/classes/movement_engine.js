@@ -33,6 +33,10 @@ export class MovementEngine{
             // If there are no collision, move entity
             entity.x += entity.velocity_x;
             entity.y += entity.velocity_y;
+
+            if (entity.velocity_x || entity.velocity_y) {
+                this.game.audio_manager.play_run_sound("player")
+            }
         }
     }
 
@@ -55,6 +59,11 @@ export class MovementEngine{
             // If there are no collision, move enemy
             enemy.x += enemy.velocity_x;
             enemy.y += enemy.velocity_y;
+
+            // ? If ill decide to add step sounds to enemies 
+            // if (enemy.velocity_x || enemy.velocity_y) {
+            //     this.game.audio_manager.play_run_sound(enemy.id)
+            // }
         }
     }
 
