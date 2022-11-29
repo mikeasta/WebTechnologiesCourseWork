@@ -52,6 +52,7 @@ export class Player {
         // Ghost mode
         this.ghost = false;
         this.ghost_toggle = document.getElementById("ghost_toggle")
+        this.ghost_toggle.innerHTML = "Ghost mode <i style='color: #e74c3c'>OFF</i>"
         this.ghost_toggle.addEventListener("click", () => {
             this.ghost = !this.ghost;
             this.ghost_toggle.innerHTML = this.ghost ? 

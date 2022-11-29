@@ -138,6 +138,16 @@ export class Render {
         // Death sprite
         this.boss_image_death     = new Image();
         this.boss_image_death.src = bossDeath.right;
+
+        // ? Boundaries toggle
+        this.boundaries_toggle = document.getElementById("boundaries_toggle");
+        this.boundaries_toggle.innerHTML = "Boundaries <i style='color: #e74c3c'>OFF</i>"
+        this.boundaries_toggle.addEventListener("click", () => {
+            this.need_to_draw_boundaries = !this.need_to_draw_boundaries;
+            this.boundaries_toggle.innerHTML = this.need_to_draw_boundaries ? 
+                "Boundaries <i style='color: #2ecc71'>ON</i>" : 
+                "Boundaries <i style='color: #e74c3c'>OFF</i>"
+        })
     }
 
 
