@@ -68,7 +68,7 @@ export class EnemyManager {
 
         // Aggro range
         this.aggro_range  = 750;
-        this.attack_range = 500;
+        this.attack_range = 300;
     }
 
     

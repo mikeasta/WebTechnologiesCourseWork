@@ -233,4 +233,4 @@ export class BoundaryEngine {
         // Else - can move to that point.
         return collision;
     }
-}  
+}

@@ -88,6 +88,8 @@ export class Player {
             shoot_y
         )
 
+        console.log(angle)
+
         // Create bullet
         this.game.bullet_engine.create_bullet(
             source_x, 
