@@ -27,7 +27,7 @@
     ✔ Game over screen @done(22-11-28 22:59)
     ✔ Finish screen @done(22-11-28 22:59)
     ✔ Saving data in leaderboards table @done(22-11-28 21:39)
-Audio manager:
+✔ Audio manager: @done(22-11-29 20:07)
     ✔ Find sounds @done(22-11-29 12:51)
     ✔ Manager class @done(22-11-28 23:13)
     ✔ Player running @done(22-11-29 13:58)
@@ -36,5 +36,5 @@ Audio manager:
     ✔ Player Damaged @done(22-11-29 13:50)
     ✔ Player Death @done(22-11-29 13:50)
     ✔ Boss fight music @done(22-11-29 14:08)
-    Turn on/off audio button
-CW Paper
+    ✔ Turn on/off audio button @done(22-11-29 20:07)
+✔ CW Paper @done(22-11-29 20:07)
