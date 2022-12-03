@@ -88,15 +88,15 @@ export class Player {
         this.direction  = shoot_x < this.game.global_offset.x ? "left" : "right";
 
         // Define source coordinates
-        const source_x = this.x + this.game.global_offset.x + this.width / 64;
-        const source_y = this.y + this.game.global_offset.y + this.height / 64;
+        const source_x = this.x + this.game.global_offset.x + this.width / 2;
+        const source_y = this.y + this.game.global_offset.y + this.height / 2;
 
         // Calc angle
         const angle = tilt_angle(
             this.game.global_offset.x + 160,
             this.game.global_offset.y,
-            shoot_x,
-            shoot_y
+            shoot_x - 32,
+            shoot_y - 48
         )
 
         // Create bullet
